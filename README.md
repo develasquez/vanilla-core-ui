@@ -1,7 +1,7 @@
 # 🏛️ Vanilla-Core Architect (`vanilla-core-ui`)
 
 [![npm version](https://img.shields.io/npm/v/vanilla-core-ui.svg)](https://www.npmjs.com/package/vanilla-core-ui)
-[![license](https://img.shields.io/npm/l/vanilla-core-ui.svg)](https://github.com/develasquez/vanilla-core-ui/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/develasquez/vanilla-core-ui.svg)](https://github.com/develasquez/vanilla-core-ui/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/develasquez/vanilla-core-ui?style=social)](https://github.com/develasquez/vanilla-core-ui)
 [![AI Agent Compatible](https://img.shields.io/badge/AI%20Agent-Antigravity%20%7C%20Claude%20%7C%20Cursor%20%7C%20Gemini-blueviolet)](https://github.com/develasquez/vanilla-core-ui)
 
