@@ -4,8 +4,8 @@
   "description": "AI Agent Skill & CLI for Vanilla-Core Architecture - SSoT state management, Pub/Sub UI updates, surgical DOM updates, and zero-dependency modular Vanilla JS web applications.",
   "main": "skills/vanilla-core-architect/SKILL.md",
   "bin": {
-    "vanilla-core-ui": "./bin/cli.js",
-    "vanilla-core-skill": "./bin/cli.js"
+    "vanilla-core-ui": "bin/cli.js",
+    "vanilla-core-skill": "bin/cli.js"
   },
   "repository": {
     "type": "git",
