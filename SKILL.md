@@ -1,5 +1,5 @@
 ---
-name: vanilla-core-architect
+name: vanilla-core-ui
 description: >-
   Specialized AI expert skill for building, modifying, and maintaining frontend applications using the strict, lightweight Vanilla-Core architecture (Single Source of Truth store.js, Pub/Sub unidirectional flow, surgical rendering, strict file limits, and complete file output scripts). Activate whenever creating or maintaining Vanilla-Core projects.
 ---
@@ -68,10 +68,10 @@ project-name/
 
 For initial file setups, components, and module code, refer to the following blueprint guides:
 
-- **[Project Boilerplate Kit](skills/vanilla-core-architect/references/boilerplate.md)** (`package.json`, `server.js`, `index.html`, `style.css`)
-- **[Core Module Blueprints](skills/vanilla-core-architect/references/blueprints.md)** (`store.js`, `dom-elements.js`, `ui/renderer.js`, `load.js`, `main.js`)
-- **[Component Pattern Blueprint](skills/vanilla-core-architect/references/component.md)** (`header.html`, `header.js`)
-- **[Gemini Models Reference](skills/vanilla-core-architect/references/gemini-models.md)** (Model selection guidance)
+- **[Project Boilerplate Kit](skills/vanilla-core-ui/references/boilerplate.md)** (`package.json`, `server.js`, `index.html`, `style.css`)
+- **[Core Module Blueprints](skills/vanilla-core-ui/references/blueprints.md)** (`store.js`, `dom-elements.js`, `ui/renderer.js`, `load.js`, `main.js`)
+- **[Component Pattern Blueprint](skills/vanilla-core-ui/references/component.md)** (`header.html`, `header.js`)
+- **[Gemini Models Reference](skills/vanilla-core-ui/references/gemini-models.md)** (Model selection guidance)
 
 ---
 

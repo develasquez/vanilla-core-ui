@@ -51,7 +51,7 @@ Run this inside your project root directory:
 npx vanilla-core-ui
 ```
 
-This installs the skill into `.agents/skills/vanilla-core-architect/` where AI agents (like Antigravity) automatically discover and activate it.
+This installs the skill into `.agents/skills/vanilla-core-ui/` where AI agents (like Antigravity) automatically discover and activate it.
 
 ### 2. Global Installation
 Install the skill globally across all AI workspace sessions on your computer:
@@ -60,7 +60,7 @@ Install the skill globally across all AI workspace sessions on your computer:
 npx vanilla-core-ui --global
 ```
 
-This copies the skill to `~/.gemini/config/skills/vanilla-core-architect/`.
+This copies the skill to `~/.gemini/config/skills/vanilla-core-ui/`.
 
 ### 3. Check CLI Options
 ```bash
@@ -105,7 +105,7 @@ my-vanilla-app/
 
 ## 🤖 How AI Agents Execute This Skill
 
-When an AI pair programmer receives a prompt to create or modify a Vanilla-Core application, `vanilla-core-architect` enforces strict execution rules:
+When an AI pair programmer receives a prompt to create or modify a Vanilla-Core application, `vanilla-core-ui` enforces strict execution rules:
 
 * **Executable Bash Scripts**: Outputs self-contained Bash scripts using `cat << 'EOF'` to generate or modify project files in a single turn.
 * **Complete Code Preservation**: Replaces target files with complete, production-ready code. Never uses `// ... rest of code` placeholders that cause lost functionality.

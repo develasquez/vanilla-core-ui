@@ -10,23 +10,23 @@ const isHelp = args.includes('--help') || args.includes('-h');
 
 if (isHelp) {
   console.log(`
-🚀 Vanilla-Core Architect Skill Installer (vanilla-core-ui)
+🚀 Vanilla-Core UI Skill Installer (vanilla-core-ui)
 
 Usage:
-  npx vanilla-core-ui           Install skill into local workspace (.agents/skills/vanilla-core-architect)
-  npx vanilla-core-ui --global  Install skill globally (~/.gemini/config/skills/vanilla-core-architect)
+  npx vanilla-core-ui           Install skill into local workspace (.agents/skills/vanilla-core-ui)
+  npx vanilla-core-ui --global  Install skill globally (~/.gemini/config/skills/vanilla-core-ui)
   npx vanilla-core-ui --help    Show help message
 `);
   process.exit(0);
 }
 
-const sourceDir = path.join(__dirname, '..', 'skills', 'vanilla-core-architect');
+const sourceDir = path.join(__dirname, '..', 'skills', 'vanilla-core-ui');
 
 let targetDir;
 if (isGlobal) {
-  targetDir = path.join(os.homedir(), '.gemini', 'config', 'skills', 'vanilla-core-architect');
+  targetDir = path.join(os.homedir(), '.gemini', 'config', 'skills', 'vanilla-core-ui');
 } else {
-  targetDir = path.join(process.cwd(), '.agents', 'skills', 'vanilla-core-architect');
+  targetDir = path.join(process.cwd(), '.agents', 'skills', 'vanilla-core-ui');
 }
 
 function copyRecursive(src, dest) {
@@ -51,10 +51,10 @@ function copyRecursive(src, dest) {
 }
 
 try {
-  console.log(`📦 Installing Vanilla-Core Architect skill to:\n   ${targetDir}\n`);
+  console.log(`📦 Installing Vanilla-Core UI skill to:\n   ${targetDir}\n`);
   copyRecursive(sourceDir, targetDir);
-  console.log('✅ Vanilla-Core Architect skill installed successfully!');
-  console.log('🤖 Your AI Agent can now discover and use "vanilla-core-architect".');
+  console.log('✅ Vanilla-Core UI skill installed successfully!');
+  console.log('🤖 Your AI Agent can now discover and use "vanilla-core-ui".');
 } catch (err) {
   console.error('❌ Error installing Vanilla-Core Skill:', err.message);
   process.exit(1);
