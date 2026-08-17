@@ -1,0 +1,43 @@
+{
+  "name": "vanilla-core-ui",
+  "version": "1.0.0",
+  "description": "AI Agent Skill & CLI for Vanilla-Core Architecture - SSoT state management, Pub/Sub UI updates, surgical DOM updates, and zero-dependency modular Vanilla JS web applications.",
+  "main": "skills/vanilla-core-architect/SKILL.md",
+  "bin": {
+    "vanilla-core-ui": "./bin/cli.js",
+    "vanilla-core-skill": "./bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/develasquez/vanilla-core-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/develasquez/vanilla-core-ui/issues"
+  },
+  "homepage": "https://github.com/develasquez/vanilla-core-ui#readme",
+  "files": [
+    "skills/",
+    "SKILL.md",
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node bin/cli.js --help"
+  },
+  "keywords": [
+    "antigravity",
+    "agent-skill",
+    "ai-agent",
+    "vanilla-core",
+    "vanilla-js",
+    "vanilla-core-ui",
+    "frontend-architecture",
+    "prompt-engineering",
+    "claude",
+    "cursor",
+    "gemini"
+  ],
+  "author": "develasquez",
+  "license": "MIT"
+}
