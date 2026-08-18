@@ -56,7 +56,7 @@ Uses the official **Material Web Components (M3)** with the **Material You Desig
 
 ## 🎨 Protocolo Obligatorio de Selección de Paleta y Superficie (Single-Theme Rule)
 
-Antes de generar el código de cualquier interfaz nueva o modificación visual mayor, **el agente SIEMPRE DEBE consultar y acordar con el usuario** dos decisiones de diseño clave:
+Antes de generar el código de cualquier interfaz nueva o modificación visual mayor, **el agente SIEMPRE DEBE interactuar con el usuario mediante preguntas directas o la herramienta interactiva `ask_question`** para definir estas dos decisiones de diseño clave:
 
 ### 1. Selección de Paleta Semántica (Únicamente 1 por proyecto)
 El agente DEBE implementar **estrictamente 1 sola paleta** de las 10 del catálogo. Queda terminantemente prohibido mezclar tokens o inventar colores fuera de la paleta elegida:
@@ -71,10 +71,8 @@ El agente DEBE implementar **estrictamente 1 sola paleta** de las 10 del catálo
 - 🍯 **Golden Amber** (`#7A5900` - Notas, recetas, interfaces artesanales)
 - 🍯 **Desert Bloom** (`#85511A` - Gastronomía, viajes, artesanía siena)
 
-> 💡 **Previsualización Nativa CLI:** El usuario o el agente pueden inspeccionar cualquier paleta en consola en Truecolor 24-bits ejecutando:
+> 💡 **Previsualización Nativa CLI:** El usuario o el agente pueden ejecutar en cualquier momento:
 > ```bash
-> npx vanilla-core-ui --palettes [nombre-o-id]
-> # Ejemplos:
 > npx vanilla-core-ui --palettes              # Lista general de las 10 paletas
 > npx vanilla-core-ui --palettes forest-sage  # Detalle Light/Dark + Superficies
 > ```
@@ -84,6 +82,13 @@ El agente DEBE validar qué tipo de fondo prefiere el usuario:
 - **Opción A: Color Tonal Propio (Default M3):** El fondo `Surface` adopta el matiz tonal sutil de la paleta (ej. `#F3F6E8` para Forest Sage).
 - **Opción B: Blanco Puro:** El fondo `Surface` se establece en `#FFFFFF` y los contenedores en `#F8F9FA`.
 - **Opción C: Escala de Grises / Neutro:** El fondo `Surface` se establece en gris neutro (`#F5F5F7` / `#EEEEF0`).
+
+### 🤖 Flujo Interactivo del Agente:
+Cuando el usuario solicita crear una interfaz ("crea una app de..."):
+1. El agente muestra el listado con los propósitos recomendados de cada paleta.
+2. El agente utiliza el modal interactivo de selección (`ask_question`) o espera la respuesta del usuario para confirmar la paleta y el modo de superficie elegidos.
+3. El agente genera el código implementando **únicamente los tokens de esa paleta elegida**.
+
 
 
 ---
