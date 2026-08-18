@@ -85,13 +85,11 @@ El agente DEBE validar qué tipo de fondo prefiere el usuario:
 
 ### 🤖 Flujo Interactivo del Agente:
 Cuando el usuario solicita crear una interfaz ("crea una app de..."):
-1. **Presentación Visual en Chat (Sin depender de consola colapsada):** El agente SIEMPRE debe renderizar en su mensaje de respuesta una **Tabla Visual Markdown** con los códigos hexadecimales, nombres, propósitos y contrastes claros, de modo que el usuario los vea inmediatamente en la conversación sin tener que expandir logs de terminal.
-2. **Modal Interactivo (`ask_question`):** El agente despliega el modal interactivo de selección de opciones para que el usuario elija su paleta y su modo de fondo en 1 clic.
-3. **Galería Visual HTML Opcional:** Si el usuario quiere ver las 10 paletas renderizadas visualmente en su navegador, puede ejecutar:
-   ```bash
-   npx vanilla-core-ui --preview
-   ```
+1. **Presentación Visual en Chat:** El agente renderiza la tabla comparativa con los esquemas recomendados.
+2. **Modal Interactivo (`ask_question`):** El agente despliega el modal interactivo de selección rápida.
+3. **Selector Visual en Navegador (`--preview`):** El usuario también puede explorar y hacer clic en **`[Seleccionar esta Paleta]`** directamente en la galería web (`npx vanilla-core-ui --preview`). Al hacer clic en el navegador, el servidor guarda la elección en `.vanilla-core-selection.json`, transmite los parámetros a la terminal y libera el puerto automáticamente.
 4. **Construcción con Paleta Única:** El agente genera el código implementando **estrictamente esa única paleta elegida**.
+
 
 
 

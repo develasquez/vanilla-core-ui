@@ -48,7 +48,7 @@ function generateHtmlPreview() {
 </head>
 <body class="bg-[#F8F9FA] dark:bg-[#121316] text-[#1C1B1F] dark:text-[#E6E1E5] min-h-screen p-4 sm:p-6 lg:p-10 transition-colors duration-200 select-none">
   
-  <div class="max-w-7xl mx-auto space-y-8">
+  <div class="max-w-7xl mx-auto space-y-8" id="main-view">
     
     <!-- Top Header -->
     <header class="bg-white dark:bg-[#1E2023] border border-gray-200 dark:border-gray-800 rounded-3xl p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5 transition-colors duration-200">
@@ -58,8 +58,8 @@ function generateHtmlPreview() {
             <span class="material-symbols-outlined text-[24px]">palette</span>
           </div>
           <div>
-            <h1 class="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Catálogo de los 10 Esquemas Semánticos M3</h1>
-            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Explorador interactivo de tokens, contrastes WCAG AAA y modos de superficie</p>
+            <h1 class="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selector Interactivo de Paletas M3</h1>
+            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Elige tu combinación de color y superficie directamente con un clic</p>
           </div>
         </div>
       </div>
@@ -106,6 +106,12 @@ function generateHtmlPreview() {
     const palettes = ${palettesJson};
     let currentTheme = 'light';
     let currentSurface = 'tonal';
+
+    const surfaceLabels = {
+      'tonal': 'Color Tonal Propio (M3 Default)',
+      'white': 'Blanco Puro (#FFFFFF)',
+      'gray': 'Escala de Grises / Neutro (#F5F5F7)'
+    };
 
     function getSurfaceColor(p, theme, mode) {
       if (theme === 'dark') {
@@ -225,16 +231,79 @@ function generateHtmlPreview() {
               </div>
             </div>
 
-            <!-- Card Footer -->
-            <div class="mt-4 pt-3 border-t flex items-center justify-between text-xs opacity-60"
+            <!-- Card Selection Action -->
+            <div class="mt-5 pt-4 border-t flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3"
                  style="border-color: \${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}">
-              <span>Hex Primario: <strong class="font-mono">\${tokens.primary}</strong></span>
-              <span>Lienzo: <strong class="font-mono">\${bgSurface}</strong></span>
+              <div class="text-xs opacity-75">
+                <span>Lienzo actual: <strong class="font-mono">\${bgSurface}</strong></span>
+              </div>
+
+              <!-- Select Button -->
+              <button class="btn-select-palette flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold shadow-md transition-all active:scale-95 cursor-pointer hover:opacity-90"
+                      style="background-color: \${tokens.primary}; color: \${tokens.onPrimary}"
+                      data-palette-id="\${p.id}"
+                      data-palette-name="\${p.name}"
+                      data-seed="\${p.seed}">
+                <span class="material-symbols-outlined text-[16px]">check</span>
+                <span>Seleccionar esta Paleta</span>
+              </button>
             </div>
 
           </div>
         \`;
       }).join('');
+
+      // Attach Select Listeners
+      document.querySelectorAll('.btn-select-palette').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const paletteId = btn.getAttribute('data-palette-id');
+          const paletteName = btn.getAttribute('data-palette-name');
+          const seed = btn.getAttribute('data-seed');
+
+          const payload = {
+            paletteId,
+            paletteName,
+            seed,
+            surfaceMode: currentSurface,
+            surfaceLabel: surfaceLabels[currentSurface],
+            theme: currentTheme
+          };
+
+          try {
+            await fetch('/select', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            document.body.innerHTML = \`
+              <div class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-[#F8F9FA] dark:bg-[#121316] text-[#1C1B1F] dark:text-[#E6E1E5]">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 shadow-lg">
+                  <span class="material-symbols-outlined text-[36px]">check_circle</span>
+                </div>
+                <h1 class="text-2xl font-bold mb-2">¡Paleta Seleccionada con Éxito!</h1>
+                <div class="bg-white dark:bg-[#1E2023] border border-gray-200 dark:border-gray-800 rounded-2xl p-4 my-4 max-w-md w-full text-left space-y-2 shadow-sm text-xs">
+                  <div class="flex justify-between">
+                    <span class="opacity-60">Esquema:</span>
+                    <strong class="font-bold text-sm">\${paletteName} (\${seed})</strong>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="opacity-60">Fondo / Superficie:</span>
+                    <strong>\${surfaceLabels[currentSurface]}</strong>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="opacity-60">Tema por defecto:</span>
+                    <strong class="capitalize">\${currentTheme} Mode</strong>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-500 max-w-sm">La selección ha sido transferida a la terminal y al agente de IA. El servidor se ha detenido y el puerto ha sido liberado.</p>
+              </div>
+            \`;
+          } catch (e) {
+            console.error('Error enviando selección:', e);
+          }
+        });
+      });
     }
 
     // Theme Switcher Listeners
@@ -296,6 +365,45 @@ function generateHtmlPreview() {
 function openPreview(port = 4500) {
   const html = generateHtmlPreview();
   const server = http.createServer((req, res) => {
+    // 1. Handle Selection from Browser
+    if (req.method === 'POST' && req.url === '/select') {
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => {
+        try {
+          const selection = JSON.parse(body);
+          
+          // Save selection to local temp file for agent/tool consumption
+          const selectionPath = path.join(process.cwd(), '.vanilla-core-selection.json');
+          fs.writeFileSync(selectionPath, JSON.stringify(selection, null, 2), 'utf-8');
+
+          console.log('\n✨ [SELECCIÓN RECIBIDA DESDE EL NAVEGADOR]');
+          console.log('═════════════════════════════════════════════════════════════');
+          console.log(` 🎨 Paleta:             ${selection.paletteName} (${selection.seed})`);
+          console.log(` 🏛️  Modo Superficie:    ${selection.surfaceLabel}`);
+          console.log(` ☀️ / 🌙 Tema Inicial:  ${selection.theme.toUpperCase()} MODE`);
+          console.log(` 💾 Guardado en:        .vanilla-core-selection.json`);
+          console.log('═════════════════════════════════════════════════════════════\n');
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true }));
+
+          // Gracefully close server
+          setTimeout(() => {
+            server.close(() => {
+              console.log('🛑 Servidor cerrado y puerto liberado automáticamente tras la selección.');
+              process.exit(0);
+            });
+          }, 600);
+        } catch (e) {
+          res.writeHead(400, { 'Content-Type': 'text/plain' });
+          res.end('Invalid selection payload');
+        }
+      });
+      return;
+    }
+
+    // 2. Handle Manual Shutdown
     if (req.url === '/shutdown') {
       res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('Server shutting down...');
@@ -309,6 +417,7 @@ function openPreview(port = 4500) {
       return;
     }
 
+    // 3. Serve Visualizer App
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
   });
@@ -323,10 +432,9 @@ function openPreview(port = 4500) {
 
   server.listen(port, () => {
     const url = `http://localhost:${port}`;
-    console.log(`\n🎨 Galería Visual de Paletas M3 activa en: ${url}`);
-    console.log(`💡 Para detener el servidor puedes:`);
-    console.log(`   1. Presionar Ctrl + C o la tecla 'q' en esta terminal`);
-    console.log(`   2. Hacer clic en el botón [🛑 Cerrar Visor] en la página web\n`);
+    console.log(`\n🎨 Selector Visual de Paletas M3 activo en: ${url}`);
+    console.log(`💡 Puedes seleccionar tu paleta favorita con un clic en la página web.`);
+    console.log(`💡 Para detener sin seleccionar presiona Ctrl + C o la tecla 'q'.\n`);
     
     const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
     exec(`${startCmd} ${url}`, () => {});
