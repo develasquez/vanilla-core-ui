@@ -136,155 +136,155 @@ breakpoints:
   expanded: ">= 840px"
 ---
 
-# Guía de Estilo y Sistema de Arquitectura UI: ${p.name}
-> Especificación Técnica Exhaustiva Material Design 3 (M3 / Material You) + Vanilla-Core
+# Style Guide & UI Architecture System: ${p.name}
+> Comprehensive Technical Specification (Material Design 3 / Material You + Vanilla-Core Architecture)
 
 ---
 
-## 1. Tokens Dinámicos y Sistema de Color (Core Palette)
+## 1. Dynamic Tokens & Color System (Core Palette)
 
-El agente **no debe usar colores estáticos en código duro**, sino **Mapeo Dinámico por Roles Semánticos** derivados del Seed Color oficial (\`${p.seed}\`).
+The application **must not use hardcoded static colors**, but instead use **Dynamic Semantic Token Mapping** derived from the official Seed Color (\`${p.seed}\`).
 
-### A. Estructura de Tokens Cromáticos
+### A. Semantic Token Structure
 
-| Token Semántico | Uso en Interfaz | Modo Claro (${selection.surfaceLabel || 'Tonal'}) | Modo Oscuro |
+| Semantic Token | Interface Role | Light Mode (${selection.surfaceLabel || 'Tonal'}) | Dark Mode |
 | :--- | :--- | :--- | :--- |
-| **\`Primary\`** | Botón primario activo, FABs, líneas de acento e iconos clave. | \`${p.light.primary}\` | \`${p.dark.primary}\` |
-| **\`On Primary\`** | Texto e iconos sobre superficie \`Primary\`. | \`${p.light.onPrimary}\` | \`${p.dark.onPrimary}\` |
-| **\`Primary Container\`** | Tarjeta seleccionada, FAB extendido, píldora de filtro seleccionada. | \`${p.light.primaryContainer}\` | \`${p.dark.primaryContainer}\` |
-| **\`On Primary Container\`** | Texto e iconos dentro de elementos \`Primary Container\`. | \`${p.light.onPrimaryContainer}\` | \`${p.dark.onPrimaryContainer}\` |
-| **\`Secondary Container\`** | Píldora indicadora en barras de navegación (Bottom Nav). | \`${p.light.secondaryContainer}\` | \`${p.dark.secondaryContainer}\` |
-| **\`On Secondary Container\`** | Texto e icono del ítem activo en la barra de navegación. | \`${p.light.onSecondaryContainer}\` | \`${p.dark.onSecondaryContainer}\` |
-| **\`Surface\`** | Lienzo exterior o fondo base del marco de la aplicación. | \`${lightSurface}\` | \`${darkSurface}\` |
-| **\`Surface Container Low\`** | Fondo de barras laterales fijas (*Standard Drawer* / Subpaneles). | \`${lightContainerLow}\` | \`${darkContainerLow}\` |
-| **\`Surface Container\`** | Tarjetas inactivas, barra de búsqueda, campos neutros. | \`${lightContainer}\` | \`${darkContainer}\` |
-| **\`Surface Container High\`** | Modales flotantes, menús *Drawer* superpuestos, tarjetas elevadas. | \`${lightContainerHigh}\` | \`${darkContainerHigh}\` |
-| **\`Surface Container Lowest\`** | Tarjetas Kanban, módulos principales de contenido. | \`${lightCard}\` | \`${darkCard}\` |
-| **\`On Surface\`** | Titulares principales, nombres de contacto, texto primario. | \`${p.light.onSurface}\` | \`${p.dark.onSurface}\` |
-| **\`On Surface Variant\`** | Fechas, texto secundario, iconos inactivos, leyendas. | \`${p.light.onSurfaceVariant}\` | \`${p.dark.onSurfaceVariant}\` |
-| **\`Outline\`** | Bordes finos de inputs, chips inactivos, botones *Outlined*. | \`${p.light.outline}\` | \`${p.dark.outline}\` |
-| **\`Outline Variant\`** | Líneas divisorias (*Dividers*) entre secciones de listas. | \`${p.light.outlineVariant}\` | \`${p.dark.outlineVariant}\` |
-| **\`Scrim\`** | Capa de oscurecimiento tras diálogos o menús modales. | \`rgba(0,0,0,0.3)\` | \`rgba(0,0,0,0.6)\` |
+| **\`Primary\`** | Active primary button, FABs, accent lines, key indicator icons. | \`${p.light.primary}\` | \`${p.dark.primary}\` |
+| **\`On Primary\`** | Text and icons placed on \`Primary\` surfaces. | \`${p.light.onPrimary}\` | \`${p.dark.onPrimary}\` |
+| **\`Primary Container\`** | Selected card, extended FAB, selected filter chip/pill. | \`${p.light.primaryContainer}\` | \`${p.dark.primaryContainer}\` |
+| **\`On Primary Container\`** | Text and icons inside \`Primary Container\` elements. | \`${p.light.onPrimaryContainer}\` | \`${p.dark.onPrimaryContainer}\` |
+| **\`Secondary Container\`** | Active indicator pill in navigation bars (Bottom Nav / Rail). | \`${p.light.secondaryContainer}\` | \`${p.dark.secondaryContainer}\` |
+| **\`On Secondary Container\`** | Text and icon of active navigation items. | \`${p.light.onSecondaryContainer}\` | \`${p.dark.onSecondaryContainer}\` |
+| **\`Surface\`** | Base canvas background for the application frame. | \`${lightSurface}\` | \`${darkSurface}\` |
+| **\`Surface Container Low\`** | Background of fixed sidebars (*Standard Drawer* / subpanels). | \`${lightContainerLow}\` | \`${darkContainerLow}\` |
+| **\`Surface Container\`** | Inactive cards, search bar, neutral input fields. | \`${lightContainer}\` | \`${darkContainer}\` |
+| **\`Surface Container High\`** | Floating dialogs, overlaid modal drawers, elevated sheets. | \`${lightContainerHigh}\` | \`${darkContainerHigh}\` |
+| **\`Surface Container Lowest\`** | Kanban boards, main content cards, data tables. | \`${lightCard}\` | \`${darkCard}\` |
+| **\`On Surface\`** | Main headings, primary contact names, high-emphasis text. | \`${p.light.onSurface}\` | \`${p.dark.onSurface}\` |
+| **\`On Surface Variant\`** | Dates, secondary subtitles, inactive icons, captions. | \`${p.light.onSurfaceVariant}\` | \`${p.dark.onSurfaceVariant}\` |
+| **\`Outline\`** | Input borders, inactive chip outlines, outlined button borders. | \`${p.light.outline}\` | \`${p.dark.outline}\` |
+| **\`Outline Variant\`** | Divider lines between list items and panel boundaries. | \`${p.light.outlineVariant}\` | \`${p.dark.outlineVariant}\` |
+| **\`Scrim\`** | Backdrop overlay behind modal dialogs and sheets. | \`rgba(0,0,0,0.3)\` | \`rgba(0,0,0,0.6)\` |
 
-### B. Regla Estricta de Elevación (Flat Depth Architecture)
+### B. Strict Elevation Rule (Flat Depth Architecture)
 
-* **Queda estrictamente prohibido usar sombras oscuras proyectadas (\`box-shadow\`) para tarjetas regulares.**
-* La elevación se calcula mediante la luminosidad y tono de la superficie:
-  - **Profundidad 0 (Lienzo):** \`Surface\`
-  - **Profundidad 1 (Contenido plano / Listas):** \`Surface Container\`
-  - **Profundidad 2 (Paneles / Modales / Menús):** \`Surface Container High\`
+* **Heavy dark drop shadows (\`box-shadow\`) are strictly prohibited on regular surface cards.**
+* Elevation and hierarchy are expressed through tonal luminance steps:
+  - **Depth 0 (Canvas):** \`Surface\`
+  - **Depth 1 (Flat Content / Lists):** \`Surface Container\`
+  - **Depth 2 (Panels / Modales / Menus):** \`Surface Container High\`
 
 ---
 
-## 2. Geometría, Sistema de Bordes y Tipografía
+## 2. Geometry, Border Radius Hierarchy & Typography
 
-### A. Jerarquía de Radios de Borde (\`border-radius\`)
+### A. Border Radius Hierarchy (\`border-radius\`)
 
-El agente debe aplicar rigurosamente las siguientes medidas según la jerarquía de anidación:
+Apply the following radii strictly according to container nesting:
 
-* **Marco Exterior de la Aplicación:** \`28px\` a \`32px\`
-* **Contenedor Modal / Navigation Drawer Modal:** \`28px\`
-* **Diálogo Flotante (Basic Dialog / \`md-dialog\`):** \`28px\`
-* **Tarjetas Principales (Message Cards / Media Cards / Kanban Cards):** \`20px\` a \`24px\`
-* **Imágenes o Adjuntos dentro de una Tarjeta:** \`16px\` *(Regla de Anidación: El hijo siempre tiene un radio menor que el contenedor padre)*.
-* **Campos de Entrada (Outlined Inputs / Forms / \`md-outlined-text-field\`):** \`4px\` a \`8px\`
-* **Píldoras, Botones, Barra de Búsqueda y Avatares:** \`9999px\` (*Full Pill*)
+* **Outer Application Frame:** \`28px\` to \`32px\`
+* **Modal Drawer Container / Dialog Sheets (\`md-dialog\`):** \`28px\`
+* **Floating Basic Dialog:** \`28px\`
+* **Primary Content Cards (Message Cards / Kanban Cards):** \`20px\` to \`24px\`
+* **Images or Media Attachments inside a Card:** \`16px\` *(Nesting Rule: Child element must always have a smaller radius than parent)*.
+* **Form Inputs (\`md-outlined-text-field\` / Outlined Inputs):** \`4px\` to \`8px\`
+* **Pills, Action Buttons, Search Bars and User Avatars:** \`9999px\` (*Full Pill*)
 
-### B. Especificaciones Tipográficas
+### B. Typography Specifications
 
-* **Tipografía Base:** Sans-serif moderna y limpia (\`Roboto\`, \`Google Sans\` o \`system-ui\`).
+* **Base Font Family:** Clean modern sans-serif (\`Roboto\`, \`Google Sans\`, or \`system-ui\`).
 * **Display / Header (\`App Titles\`):** \`22px\` - \`24px\` | Regular/Medium | Line-height: \`1.2\`
-* **Card Titles (\`Nombres / Asuntos / Tareas\`):** \`16px\` - \`18px\` | Semibold/Bold | Line-height: \`1.3\`
-* **Body Text (\`Cuerpo de Mensajes / Descripciones\`):** \`14px\` - \`15px\` | Regular | Line-height: \`1.45\`
-* **Subtext & Metadata (\`Fechas / Subtítulos / Tags\`):** \`12px\` - \`13px\` | Regular | Color: \`On Surface Variant\`
-* **Badges WCAG AAA:** \`11px\` | Bold | Line-height: \`1\` | Padding: \`3px 9px\` | Contraste $\\ge 7:1$
+* **Card Titles (\`Names / Subjects / Task Titles\`):** \`16px\` - \`18px\` | Semibold/Bold | Line-height: \`1.3\`
+* **Body Text (\`Message Content / Descriptions\`):** \`14px\` - \`15px\` | Regular | Line-height: \`1.45\`
+* **Subtext & Metadata (\`Timestamps / Subtitles / Tags\`):** \`12px\` - \`13px\` | Regular | Color: \`On Surface Variant\`
+* **WCAG AAA Badges:** \`11px\` | Bold | Line-height: \`1\` | Padding: \`3px 9px\` | Contrast Ratio $\\ge 7:1$
 
 ---
 
-## 3. Disposición y Adaptabilidad (Layout & Responsiveness)
+## 3. Layout & Responsiveness
 
-El diseño de pantalla utiliza un sistema de rejilla flexible (*Flexbox / CSS Grid*) controlado por los breakpoints canónicos:
+The layout utilizes a flexible CSS Grid / Flexbox architecture controlled by canonical breakpoints:
 
-### A. Breakpoints de Pantalla
+### A. Screen Breakpoints
 
 * **Compact (Mobile):** \`< 600px\`
 * **Medium (Tablet / Foldables):** \`600px - 839px\`
 * **Expanded (Desktop / Web):** \`≥ 840px\`
 
-### B. Tabla de Mapeo Adaptable de Layouts
+### B. Adaptive Component Mapping
 
-| Componente | Mobile (\`< 600px\`) | Tablet (\`600px - 839px\`) | Desktop (\`≥ 840px\`) |
+| Component | Mobile (\`< 600px\`) | Tablet (\`600px - 839px\`) | Desktop (\`≥ 840px\`) |
 | :--- | :--- | :--- | :--- |
-| **Navegación Principal** | **Bottom Navigation Bar** fija inferior (Alto: \`80px\`). | **Navigation Rail** lateral estrecho izquierdo (Ancho: \`64px - 72px\`). | **Navigation Drawer** lateral extendido (Ancho: \`240px - 280px\`). |
-| **Estructura de Pantalla** | **Single Pane Layout**: Una sola columna a pantalla completa. | **Single Pane amplio**: Columna central con márgenes automáticos. | **Dual / 3-Pane Layout**: Paneles concurrentes lado a lado. |
-| **Botón de Acción (FAB)** | **FAB Circular** flotante en la esquina inferior derecha. | **FAB Circular** ubicado dentro del área principal. | **Extended FAB** con texto en la parte superior del panel de navegación. |
-| **Modales de Navegación** | **Modal Drawer** deslizable que cubre el contenido con \`Scrim\`. | **Standard Drawer** integrado o **Modal Drawer**. | **Standard Drawer** permanente, acoplado al grid sin capa de oscurecimiento. |
+| **Main Navigation** | **Bottom Navigation Bar** fixed at bottom (Height: \`80px\`). | **Navigation Rail** narrow vertical left (Width: \`64px - 72px\`). | **Navigation Drawer** full vertical sidebar (Width: \`240px - 280px\`). |
+| **Screen Architecture** | **Single Pane Layout**: Full width single column. | **Wide Single Pane**: Centered column with auto margins. | **Dual / 3-Pane Layout**: Side-by-side concurrent panels. |
+| **Action Button (FAB)** | **Circular FAB** floating in bottom right corner. | **Circular FAB** placed within the main canvas area. | **Extended FAB** with text in top of navigation panel. |
+| **Navigation Modals** | **Modal Drawer** slide-over with \`Scrim\` overlay. | **Standard Drawer** or **Modal Drawer**. | **Standard Drawer** permanent, docked to grid without scrim. |
 
 ---
 
-## 4. Especificación Detallada de Componentes Clave
+## 4. Key Component Specifications
 
-### A. Barra de Búsqueda (\`Search Bar\`)
+### A. Search Bar (\`Search Bar\`)
 
-* **Forma:** Píldora completa (\`border-radius: 9999px\`).
-* **Dimensiones:** Alto \`48px - 56px\`, ancho \`100%\`.
-* **Fondo:** \`Surface Container\` (\`${lightContainer}\`). Sin bordes pesados.
-* **Layout Interno:** \`Flexbox row\`, \`align-items: center\`, \`justify-content: space-between\`.
-  - *Izquierda:* Ícono de búsqueda (\`On Surface Variant\`) | Padding izquierdo: \`16px\`.
-  - *Centro:* Texto marcador (*placeholder*) desaturado.
-  - *Derecha:* Avatar de usuario circular (\`32px x 32px\`) o botón de filtro | Padding derecho: \`8px\`.
+* **Shape:** Full pill (\`border-radius: 9999px\`).
+* **Dimensions:** Height \`48px - 56px\`, width \`100%\`.
+* **Background:** \`Surface Container\` (\`${lightContainer}\`). Clean borderless surface.
+* **Internal Layout:** \`Flexbox row\`, \`align-items: center\`, \`justify-content: space-between\`.
+  - *Left:* Search icon (\`On Surface Variant\`) | Left padding: \`16px\`.
+  - *Center:* Placeholder text in desaturated tone.
+  - *Right:* User avatar circle (\`32px x 32px\`) or filter button | Right padding: \`8px\`.
 
-### B. Tarjetas de Mensaje / Contenido (\`Cards\`)
+### B. Content & Message Cards (\`Cards\`)
 
-* **Contenedor:** \`border-radius: 20px - 24px\`, padding interno: \`16px - 20px\`.
-* **Estado Normal:** Fondo \`Surface Container\` (\`${lightContainer}\`) o \`Surface Container Lowest\` (\`${lightCard}\`).
-* **Estado Seleccionado (En foco / Activo):** Fondo \`Primary Container\` (\`${p.light.primaryContainer}\`). Todo el texto e iconos internos pasan a \`On Primary Container\` (\`${p.light.onPrimaryContainer}\`).
-* **Header de Tarjeta:**
-  - Avatar circular (\`40px\`) a la izquierda.
-  - Columna de información: Nombre/Título en negrita (\`16px\`), fecha/hora debajo (\`12px\`).
-  - Acción / Badge a la derecha.
+* **Container:** \`border-radius: 20px - 24px\`, internal padding: \`16px - 20px\`.
+* **Normal State:** Background \`Surface Container\` (\`${lightContainer}\`) or \`Surface Container Lowest\` (\`${lightCard}\`).
+* **Active / Selected State:** Background \`Primary Container\` (\`${p.light.primaryContainer}\`). Internal text/icons adapt to \`On Primary Container\` (\`${p.light.onPrimaryContainer}\`).
+* **Card Header:**
+  - Avatar circle (\`40px\`) on left.
+  - Information column: Bold title (\`16px\`), date/time beneath (\`12px\`).
+  - Action / Favorite badge on top right.
 
-### C. Botones de Acción
+### C. Action Buttons
 
-* **Primary Filled Button (\`md-filled-button\`):** Formato píldora (\`9999px\`), fondo \`Primary\`, texto \`On Primary\` en negrita.
-* **Secondary Outlined Button (\`md-outlined-button\`):** Formato píldora (\`9999px\`), fondo transparente, borde \`1px solid Outline\`, texto \`Primary\`.
-* **Text Button (\`md-text-button\`):** Sin fondo ni borde, texto \`Primary\` en mayúscula/semibold.
+* **Primary Filled Button (\`md-filled-button\`):** Full pill shape (\`9999px\`), background \`Primary\`, text \`On Primary\` bold.
+* **Secondary Outlined Button (\`md-outlined-button\`):** Full pill shape (\`9999px\`), transparent background, \`1px solid Outline\`, text \`Primary\`.
+* **Text Button (\`md-text-button\`):** Borderless, background-free, uppercase/semibold \`Primary\` text.
 
-### D. Barra de Navegación Inferior (\`Navigation Bar\`)
+### D. Bottom Navigation Bar (\`Navigation Bar\`)
 
-* **Contenedor:** Alto \`80px\`, fondo \`Surface Container Low\` (\`${lightContainerLow}\`).
-* **Variante Stacked (Móvil Estándar):** Columna vertical centrada: Píldora indicadora arriba (\`64px x 32px\`, \`Secondary Container\`), texto abajo (\`12px\`).
-* **Variante Inline (Horizontal):** Píldora extendida que encierra el icono y texto en una fila horizontal con \`border-radius: 9999px\`.
-
----
-
-## 5. Guía de Ejecución por Escenarios UI
-
-### Escenario 1: Feed / Lista Móvil (Mobile Single Pane)
-1. **Header:** \`Search Bar\` en formato píldora en la parte superior.
-2. **Body:** Lista de tarjetas (\`Cards\`) apiladas verticalmente con \`gap: 12px\`.
-3. **Acción Flotante:** \`FAB\` circular (\`56px x 56px\`, \`border-radius: 16px\`) posicionado a \`16px\` de la esquina inferior.
-4. **Footer:** \`Bottom Navigation Bar\` fija en la base de la pantalla.
-
-### Escenario 2: Diálogos y Formularios (Modales)
-1. **Confirmación Breve:** \`Basic Dialog\` (\`md-dialog\`) centrado en pantalla, \`border-radius: 28px\`, fondo \`Surface Container High\`, bloqueado con \`Scrim\` al 30%. Botones de acción en la esquina inferior derecha como \`Text Buttons\`.
-2. **Formulario Complejo (>3 campos):** \`Full-screen Dialog\` ocupando el 100% de la pantalla.
-   - Barra superior con botón "X" a la izquierda, título central y acción "Save" en texto \`Primary\` a la derecha.
-   - Inputs en formato \`Outlined Field\` con borde \`1px\`, \`border-radius: 8px\` y etiquetas flotantes (*Notched Outline*).
-
-### Escenario 3: Aplicación de Escritorio / Dashboard (Desktop 3-Pane)
-Configurar una cuadrícula \`Flexbox\` horizontal con tres áreas diferenciadas **sin bordes divisores verticales pesados**:
-$$\\text{Pantalla Completa} = \\text{Panel 1 (Drawer 240px)} + \\text{Panel 2 (Lista 360px)} + \\text{Panel 3 (Detalle flex-1)}$$
-1. **Panel 1 - Menú Lateral (\`240px\`):** Fondo \`Surface Container Low\` (\`${lightContainerLow}\`). Encabezado con \`Extended FAB\` ("Compose" o "Nueva Tarea") en píldora con fondo \`Primary Container\`.
-2. **Panel 2 - Lista / Kanban (\`360px\`):** Fondo \`Surface\` (\`${lightSurface}\`). Muestra la \`Search Bar\` e ítems de lista. La tarjeta activa cambia su fondo a \`Primary Container\` (\`${p.light.primaryContainer}\`).
-3. **Panel 3 - Lectura / Detalle (\`flex-1\`):** Fondo \`Surface Container Lowest\` (\`${lightCard}\`). Borde redondeado del contenedor de \`24px\`. Despliega el contenido completo del elemento seleccionado en el Panel 2.
+* **Container:** Height \`80px\`, background \`Surface Container Low\` (\`${lightContainerLow}\`).
+* **Stacked Variant (Mobile Default):** Centered vertical column: Active indicator pill on top (\`64px x 32px\`, \`Secondary Container\`), label beneath (\`12px\`).
+* **Inline Variant (Horizontal):** Extended pill enclosing icon and label in a single row with \`border-radius: 9999px\`.
 
 ---
 
-## 6. Arquitectura Vanilla-Core (Reglas de Implementación)
-1. **Single Source of Truth (SSoT):** Todo el estado dinámico reside exclusivamente en \`store.js\`.
-2. **Surgical Rendering (Anti-Thrashing):** Prohibido sobreescribir con \`innerHTML\` formularios activos donde el usuario esté escribiendo.
-3. **Desacoplamiento Pub/Sub:** Los componentes publican cambios mediante \`setState()\`, y los renderers suscritos actualizan la UI quirúrgicamente.
+## 5. UI Execution Scenarios
+
+### Scenario 1: Mobile Feed / Single Pane
+1. **Header:** Pill-shaped \`Search Bar\` on top.
+2. **Body:** Vertically stacked content \`Cards\` with \`gap: 12px\`.
+3. **Floating Action:** Circular \`FAB\` (\`56px x 56px\`, \`border-radius: 16px\`) positioned \`16px\` from bottom corner.
+4. **Footer:** Fixed \`Bottom Navigation Bar\` at screen base.
+
+### Scenario 2: Dialogs & Forms (Modals)
+1. **Brief Confirmation:** \`Basic Dialog\` (\`md-dialog\`) centered on screen, \`border-radius: 28px\`, background \`Surface Container High\`, dimmed with 30% \`Scrim\`. Action buttons in bottom right as \`Text Buttons\`.
+2. **Complex Form (>3 fields):** \`Full-screen Dialog\` spanning 100% viewport.
+   - Top app bar with "X" close icon on left, center title, and "Save" action in \`Primary\` text on right.
+   - Inputs in \`Outlined Field\` format with \`1px\` border, \`border-radius: 8px\` and floating notched labels.
+
+### Scenario 3: Desktop Dashboard (3-Pane Layout)
+Configure a horizontal \`Flexbox\` grid with 3 distinct areas **without heavy vertical border dividers**:
+$$\\text{Full Viewport} = \\text{Panel 1 (Drawer 240px)} + \\text{Panel 2 (List 360px)} + \\text{Panel 3 (Detail flex-1)}$$
+1. **Panel 1 - Navigation Sidebar (\`240px\`):** Background \`Surface Container Low\` (\`${lightContainerLow}\`). Header with \`Extended FAB\` ("Compose" or "New Task") in pill shape with \`Primary Container\` background.
+2. **Panel 2 - List / Kanban (\`360px\`):** Background \`Surface\` (\`${lightSurface}\`). Hosts the \`Search Bar\` and list items. Active card highlights with \`Primary Container\` (\`${p.light.primaryContainer}\`).
+3. **Panel 3 - Detail View (\`flex-1\`):** Background \`Surface Container Lowest\` (\`${lightCard}\`). Rounded container corner (\`24px\`). Renders full detail for the selected item in Panel 2.
+
+---
+
+## 6. Vanilla-Core Architectural Rules
+1. **Single Source of Truth (SSoT):** All dynamic state lives exclusively in \`store.js\`.
+2. **Surgical Rendering (Anti-Thrashing):** Never overwrite active form containers with destructive \`innerHTML\` while the user is typing.
+3. **Pub/Sub Decoupling:** Components publish changes via \`setState()\`, and subscribed renderers perform targeted DOM updates.
 `;
 }
 
@@ -292,7 +292,7 @@ function generateHtmlPreview() {
   const palettesJson = JSON.stringify(PALETTES);
 
   return `<!DOCTYPE html>
-<html lang="es" class="light">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -342,8 +342,8 @@ function generateHtmlPreview() {
             <span class="material-symbols-outlined text-[24px]">palette</span>
           </div>
           <div>
-            <h1 class="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selector Interactivo de Paletas M3</h1>
-            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Elige tu combinación y genera automáticamente el archivo <strong class="text-indigo-600 dark:text-indigo-400 font-mono">DESIGN.md</strong></p>
+            <h1 class="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Interactive M3 Palette Selector</h1>
+            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Choose your combination to automatically generate <strong class="text-indigo-600 dark:text-indigo-400 font-mono">DESIGN.md</strong></p>
           </div>
         </div>
       </div>
@@ -355,25 +355,25 @@ function generateHtmlPreview() {
         <div class="inline-flex items-center p-1 bg-gray-100 dark:bg-[#282A2D] rounded-full border border-gray-200 dark:border-gray-700">
           <button id="btn-theme-light" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-transparent text-gray-900 dark:text-gray-400 shadow-sm dark:shadow-none transition-all">
             <span class="material-symbols-outlined text-[16px]">light_mode</span>
-            <span>Claro</span>
+            <span>Light</span>
           </button>
           <button id="btn-theme-dark" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-transparent dark:bg-[#381E72] text-gray-600 dark:text-[#EADDFF] transition-all">
             <span class="material-symbols-outlined text-[16px]">dark_mode</span>
-            <span>Oscuro</span>
+            <span>Dark</span>
           </button>
         </div>
 
         <!-- Surface Mode Selector -->
         <div class="inline-flex items-center p-1 bg-gray-100 dark:bg-[#282A2D] rounded-full border border-gray-200 dark:border-gray-700">
           <button class="surface-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-600 text-white transition-all" data-surface="tonal">Tonal M3</button>
-          <button class="surface-btn px-3 py-1.5 rounded-full text-xs font-semibold text-gray-600 dark:text-gray-400 transition-all" data-surface="white">Blanco Puro</button>
-          <button class="surface-btn px-3 py-1.5 rounded-full text-xs font-semibold text-gray-600 dark:text-gray-400 transition-all" data-surface="gray">Gris Neutro</button>
+          <button class="surface-btn px-3 py-1.5 rounded-full text-xs font-semibold text-gray-600 dark:text-gray-400 transition-all" data-surface="white">Pure White</button>
+          <button class="surface-btn px-3 py-1.5 rounded-full text-xs font-semibold text-gray-600 dark:text-gray-400 transition-all" data-surface="gray">Neutral Gray</button>
         </div>
 
         <!-- Shutdown Button -->
         <button id="btn-shutdown" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-900/50 hover:bg-red-200 dark:hover:bg-red-900 transition-colors">
           <span class="material-symbols-outlined text-[16px]">power_settings_new</span>
-          <span>Cerrar Visor</span>
+          <span>Close</span>
         </button>
 
       </div>
@@ -392,9 +392,9 @@ function generateHtmlPreview() {
     let currentSurface = 'tonal';
 
     const surfaceLabels = {
-      'tonal': 'Color Tonal Propio (M3 Default)',
-      'white': 'Blanco Puro (#FFFFFF)',
-      'gray': 'Escala de Grises / Neutro (#F5F5F7)'
+      'tonal': 'Tonal Color (Default M3)',
+      'white': 'Pure White (#FFFFFF)',
+      'gray': 'Neutral Grayscale (#F5F5F7)'
     };
 
     function getSurfaceColor(p, theme, mode) {
@@ -430,7 +430,6 @@ function generateHtmlPreview() {
         const bgSurface = getSurfaceColor(p, currentTheme, currentSurface);
         const cardBg = getCardBgColor(p, currentTheme, currentSurface);
         const onSurface = tokens.onSurface;
-        const onSurfaceVariant = tokens.onSurfaceVariant;
 
         return \`
           <div class="preview-card rounded-3xl p-6 border flex flex-col justify-between shadow-sm"
@@ -458,7 +457,7 @@ function generateHtmlPreview() {
                    style="background-color: \${cardBg}; border-color: \${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}">
                 
                 <div class="flex items-center justify-between text-xs font-bold opacity-60 uppercase tracking-wider">
-                  <span>M3 Componentes Reales</span>
+                  <span>Live M3 Components</span>
                   <span>\${currentTheme.toUpperCase()} MODE</span>
                 </div>
 
@@ -485,7 +484,7 @@ function generateHtmlPreview() {
                   <span class="px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1"
                         style="background-color: \${tokens.badgeSuccessBg}; color: \${tokens.badgeSuccessText}">
                     <span class="material-symbols-outlined text-[14px]">check_circle</span>
-                    +14.8% Activo
+                    +14.8% Active
                   </span>
 
                   <span class="px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1"
@@ -497,14 +496,14 @@ function generateHtmlPreview() {
                   <span class="px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1"
                         style="background-color: \${tokens.badgeWarningBg}; color: \${tokens.badgeWarningText}">
                     <span class="material-symbols-outlined text-[14px]">warning</span>
-                    Alerta
+                    Alert
                   </span>
                 </div>
 
                 <!-- Progress Bar Mockup -->
                 <div class="space-y-1.5 pt-1">
                   <div class="flex justify-between text-[11px] font-medium opacity-75">
-                    <span>Nivel de contraste verificado</span>
+                    <span>Verified Contrast Ratio</span>
                     <span class="font-bold">AAA ( $\\ge 7:1$ )</span>
                   </div>
                   <div class="w-full h-2 rounded-full overflow-hidden" style="background-color: \${tokens.secondaryContainer}">
@@ -519,7 +518,7 @@ function generateHtmlPreview() {
             <div class="mt-5 pt-4 border-t flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3"
                  style="border-color: \${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'}">
               <div class="text-xs opacity-75">
-                <span>Lienzo actual: <strong class="font-mono">\${bgSurface}</strong></span>
+                <span>Current canvas: <strong class="font-mono">\${bgSurface}</strong></span>
               </div>
 
               <!-- Select Button -->
@@ -529,7 +528,7 @@ function generateHtmlPreview() {
                       data-palette-name="\${p.name}"
                       data-seed="\${p.seed}">
                 <span class="material-symbols-outlined text-[16px]">description</span>
-                <span>Generar DESIGN.md con esta Paleta</span>
+                <span>Generate DESIGN.md with this Palette</span>
               </button>
             </div>
 
@@ -565,30 +564,30 @@ function generateHtmlPreview() {
                 <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 shadow-lg">
                   <span class="material-symbols-outlined text-[36px]">check_circle</span>
                 </div>
-                <h1 class="text-2xl font-bold mb-2">¡DESIGN.md Generado con Éxito!</h1>
+                <h1 class="text-2xl font-bold mb-2">DESIGN.md Successfully Generated!</h1>
                 <div class="bg-white dark:bg-[#1E2023] border border-gray-200 dark:border-gray-800 rounded-2xl p-5 my-4 max-w-md w-full text-left space-y-2.5 shadow-sm text-xs">
                   <div class="flex justify-between">
-                    <span class="opacity-60">Esquema Semántico:</span>
+                    <span class="opacity-60">Semantic Scheme:</span>
                     <strong class="font-bold text-sm">\${paletteName} (\${seed})</strong>
                   </div>
                   <div class="flex justify-between">
-                    <span class="opacity-60">Fondo / Superficie:</span>
+                    <span class="opacity-60">Background / Surface:</span>
                     <strong>\${surfaceLabels[currentSurface]}</strong>
                   </div>
                   <div class="flex justify-between">
-                    <span class="opacity-60">Tema por defecto:</span>
+                    <span class="opacity-60">Default Theme:</span>
                     <strong class="capitalize">\${currentTheme} Mode</strong>
                   </div>
                   <div class="flex justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
-                    <span class="opacity-60">Archivo de Diseño:</span>
+                    <span class="opacity-60">Design Spec File:</span>
                     <strong class="font-mono text-emerald-600 dark:text-emerald-400">DESIGN.md (Google Stitch Spec)</strong>
                   </div>
                 </div>
-                <p class="text-xs text-gray-500 max-w-sm">El archivo DESIGN.md fue creado en la raíz del proyecto. El servidor se ha cerrado y el agente continuará la construcción.</p>
+                <p class="text-xs text-gray-500 max-w-sm">The DESIGN.md file has been created at the root of your project. The server has closed and the AI agent will now proceed with building.</p>
               </div>
             \`;
           } catch (e) {
-            console.error('Error enviando selección:', e);
+            console.error('Error sending selection:', e);
           }
         });
       });
@@ -637,7 +636,7 @@ function generateHtmlPreview() {
     document.getElementById('btn-shutdown').addEventListener('click', async () => {
       try {
         await fetch('/shutdown');
-        document.body.innerHTML = '<div class="min-h-screen flex flex-col items-center justify-center text-center p-6"><div class="w-16 h-16 rounded-full bg-red-100 dark:bg-red-950 text-red-600 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-[32px]">check_circle</span></div><h1 class="text-2xl font-bold mb-2">Servidor Detenido</h1><p class="text-gray-500 text-sm">El puerto local ha sido liberado exitosamente. Ya puedes cerrar esta pestaña.</p></div>';
+        document.body.innerHTML = '<div class="min-h-screen flex flex-col items-center justify-center text-center p-6"><div class="w-16 h-16 rounded-full bg-red-100 dark:bg-red-950 text-red-600 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-[32px]">check_circle</span></div><h1 class="text-2xl font-bold mb-2">Server Stopped</h1><p class="text-gray-500 text-sm">The local port has been released successfully. You may close this tab.</p></div>';
       } catch (e) {
         window.close();
       }
@@ -666,12 +665,12 @@ function openPreview(port = 4500) {
           const designMdPath = path.join(process.cwd(), 'DESIGN.md');
           fs.writeFileSync(designMdPath, designMdContent, 'utf-8');
 
-          console.log('\n✨ [SELECCIÓN RECIBIDA DESDE EL NAVEGADOR]');
+          console.log('\n✨ [SELECTION RECEIVED FROM BROWSER]');
           console.log('═════════════════════════════════════════════════════════════');
-          console.log(` 🎨 Paleta:             ${selection.paletteName} (${selection.seed})`);
-          console.log(` 🏛️  Modo Superficie:    ${selection.surfaceLabel}`);
-          console.log(` ☀️ / 🌙 Tema Inicial:  ${selection.theme.toUpperCase()} MODE`);
-          console.log(` 📄 Archivo Generado:   DESIGN.md (Guía Técnica & Tokens M3)`);
+          console.log(` 🎨 Scheme:             ${selection.paletteName} (${selection.seed})`);
+          console.log(` 🏛️  Surface Mode:       ${selection.surfaceLabel}`);
+          console.log(` ☀️ / 🌙 Initial Theme:  ${selection.theme.toUpperCase()} MODE`);
+          console.log(` 📄 Generated File:     DESIGN.md (M3 Architecture & Tokens)`);
           console.log('═════════════════════════════════════════════════════════════\n');
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -680,7 +679,7 @@ function openPreview(port = 4500) {
           // Gracefully close server
           setTimeout(() => {
             server.close(() => {
-              console.log('🛑 Servidor cerrado y puerto liberado automáticamente tras generar DESIGN.md.');
+              console.log('🛑 Preview server closed and port released automatically.');
               process.exit(0);
             });
           }, 600);
@@ -696,10 +695,10 @@ function openPreview(port = 4500) {
     if (req.url === '/shutdown') {
       res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('Server shutting down...');
-      console.log('\n🛑 Solicitud de cierre recibida desde el navegador.');
+      console.log('\n🛑 Shutdown request received from browser.');
       setTimeout(() => {
         server.close(() => {
-          console.log('✅ Puerto liberado con éxito.\n');
+          console.log('✅ Port released successfully.\n');
           process.exit(0);
         });
       }, 300);
@@ -721,9 +720,9 @@ function openPreview(port = 4500) {
 
   server.listen(port, () => {
     const url = `http://localhost:${port}`;
-    console.log(`\n🎨 Selector Visual de Paletas M3 activo en: ${url}`);
-    console.log(`💡 Puedes seleccionar tu paleta favorita con un clic para generar tu DESIGN.md.`);
-    console.log(`💡 Para detener sin seleccionar presiona Ctrl + C o la tecla 'q'.\n`);
+    console.log(`\n🎨 M3 Interactive Palette Selector active at: ${url}`);
+    console.log(`💡 Click 'Generate DESIGN.md with this Palette' on your preferred scheme.`);
+    console.log(`💡 Press Ctrl + C or the 'q' key in this terminal to exit without selecting.\n`);
     
     const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
     exec(`${startCmd} ${url}`, () => {});
@@ -736,9 +735,9 @@ function openPreview(port = 4500) {
       process.stdin.setEncoding('utf8');
       process.stdin.on('data', (key) => {
         if (key === '\u0003' || key === 'q' || key === 'Q' || key === '\u001b') {
-          console.log('\n🛑 Deteniendo servidor...');
+          console.log('\n🛑 Stopping server...');
           server.close(() => {
-            console.log('✅ Puerto liberado con éxito. ¡Hasta luego!\n');
+            console.log('✅ Port released successfully. Goodbye!\n');
             process.exit(0);
           });
         }

@@ -11,66 +11,77 @@ You MUST adhere to all principles and structures defined below without deviation
 
 ---
 
-## 🎨 Modos de Trabajo: Vanilla Estándar vs Material Components (MDC Web)
+## 🌐 Language & Localization Directive
 
-El skill cuenta con dos modalidades oficiales según el requerimiento del usuario o si se invoca `/vanilla-core-ui material`:
-
-1. **Modo Estándar (TailwindCSS puro):**
-   - Utiliza utility classes de TailwindCSS directamente en el HTML.
-   - Sigue los Blueprints base de `store.js`, `ui/renderer.js`, `load.js` y `main.js`.
-2. **Modo Material Components Web (MDC Web & Material Design 3):**
-   - Incorpora la suite oficial de **Material Components Web (v14.0.0)** y **Material Symbols / Icons** alojados de forma local y **100% offline** en `public/vendor/material/` o `vendor/material-web/` (sin depender de CDNs externos ni bloqueos de red).
-   - Utiliza la arquitectura de Tokens de Diseño de **Material 3 (M3 / Material You)** basada en HCT (Hue-Chroma-Tone) y contrastes **WCAG AAA**.
-   - Integra web components nativos (`md-filled-button`, `md-outlined-text-field`, `md-switch`, `md-dialog`, `md-checkbox`, `md-slider`, `md-tabs`, `md-chip-set`, etc.) o clases `mdc-*` con ripple y animaciones fluidas a 60 FPS.
-   - Aplica tokens semánticos en `style.css` y variables CSS (`--md-sys-color-*`).
+* **Default Interface Language:** All generated user interfaces, components, copy, labels, placeholders, and design documents MUST be in **English** by default.
+* **Spanish Interfaces:** Generate interfaces in **Spanish ONLY IF the user explicitly requests it** in their prompt (e.g., *"hazlo en español"*, *"interfaz en español"*).
 
 ---
 
-## 🎨 Sistema de Color Semántico Material Design 3 (Regla de Oro)
+## 🎨 Operational Modes: Standard Vanilla vs Material Components (MDC Web)
 
-Para cualquier interfaz generada en modo Material / M3, el proyecto DEBE regirse por los principios cromáticos oficiales de Material Design 3 (Material You).
+The skill features two official modes depending on user requirements or when invoking `/vanilla-core-ui material`:
 
-### 1. Selección de Paleta Semántica (Únicamente 1 por proyecto)
-El agente DEBE implementar **estrictamente 1 sola paleta** de las 10 del catálogo. Queda terminantemente prohibido mezclar tokens o inventar colores fuera de la paleta elegida:
-- 🌿 **Forest Sage** (`#426B29` - Salud, meditación, sostenibilidad)
-- 🌿 **Olive Slate** (`#5A641F` - Agricultura, finanzas éticas, lectura)
-- 🔴 **Crimson Quartz** (`#BB1834` - Fitness, alertas, e-commerce, noticias)
-- 🔴 **Terracotta Dusk** (`#A24244` - Redes sociales, eventos, interiorismo)
-- 💜 **Lavender Breeze** (`#6750A4` - Productividad, email, dashboards SaaS)
-- 💜 **Orchid Velvet** (`#8E4A8D` - Apps creativas, bienestar, belleza)
-- 🌊 **Oceanic Slate** (`#2B638B` - Analítica de datos, fintech, corporativo)
-- 🌊 **Aqua Frost** (`#006874` - Telemedicina, clima, monitorización técnica)
-- 🍯 **Golden Amber** (`#7A5900` - Notas, recetas, interfaces artesanales)
-- 🍯 **Desert Bloom** (`#85511A` - Gastronomía, viajes, artesanía siena)
-
-### 2. Selección del Modo de Fondo / Superficie
-- **Opción A: Color Tonal Propio (Default M3):** El fondo `Surface` adopta el matiz tonal sutil de la paleta (ej. `#F3F6E8` para Forest Sage).
-- **Opción B: Blanco Puro:** El fondo `Surface` se establece en `#FFFFFF` y los contenedores en `#F8F9FA`.
-- **Opción C: Escala de Grises / Neutro:** El fondo `Surface` se establece en gris neutro (`#F5F5F7` / `#EEEEF0`).
+1. **Standard Mode (Pure TailwindCSS):**
+   - Implements TailwindCSS utility classes directly in the HTML.
+   - Adheres to the baseline Blueprints of `store.js`, `ui/renderer.js`, `load.js`, and `main.js`.
+2. **Material Components Web Mode (MDC Web & Material Design 3):**
+   - Incorporates the official **Material Components Web (v14.0.0)** suite and **Material Symbols / Icons** bundled locally and **100% offline** in `public/vendor/material/` or `vendor/material-web/` (without external CDN dependencies or network blockers).
+   - Implements the **Material 3 (M3 / Material You)** Design Tokens architecture based on HCT (Hue-Chroma-Tone) and **WCAG AAA** contrast compliance.
+   - Integrates native web components (`md-filled-button`, `md-outlined-text-field`, `md-switch`, `md-dialog`, `md-checkbox`, `md-slider`, `md-tabs`, `md-chip-set`, etc.) or `mdc-*` classes with 60 FPS ripple effects and fluid animations.
+   - Applies semantic design tokens in `style.css` and CSS variables (`--md-sys-color-*`).
 
 ---
 
-### 🤖 Flujo Interactivo Automatizado y Generación de `DESIGN.md`:
+## 🎨 Material Design 3 Semantic Color System (The Golden Rule)
 
-Cuando el usuario solicita crear o rediseñar una interfaz (ej. *"crea una app de...", "diseña un dashboard..."*):
+For any interface generated in Material / M3 mode, the project MUST follow the official Material Design 3 (Material You) chromatic system.
 
-1. **Lanzamiento Automático del Selector Visual:**
-   - El agente ejecuta directamente con `run_command`:
-     ```bash
-     npx vanilla-core-ui --preview
-     ```
-   - Esto abre instantáneamente la galería interactiva en el navegador del usuario con los 10 esquemas M3 reales, botones, badges WCAG AAA y alternadores de modo claro/oscuro y superficie.
+### 1. Semantic Palette Selection (Strictly 1 per Project)
+The agent MUST implement **strictly 1 single palette** from the 10 catalog schemes. Mixing color tokens or inventing colors outside the chosen palette is strictly prohibited:
+- 🌿 **Forest Sage** (`#426B29` - Health, meditation, sustainability, nature)
+- 🌿 **Olive Slate** (`#5A641F` - Agriculture, ethical finance, reading)
+- 🔴 **Crimson Quartz** (`#BB1834` - Fitness, critical alerts, commerce, news)
+- 🔴 **Terracotta Dusk** (`#A24244` - Social platforms, events, interior design)
+- 💜 **Lavender Breeze** (`#6750A4` - Email, productivity suites, SaaS dashboards)
+- 💜 **Orchid Velvet** (`#8E4A8D` - Creative studios, lifestyle, wellness, beauty)
+- 🌊 **Oceanic Slate** (`#2B638B` - Finance, data analytics, cloud architecture)
+- 🌊 **Aqua Frost** (`#006874` - Telemedicine, weather, telemetry, infrastructure)
+- 🍯 **Golden Amber** (`#7A5900` - Notes, recipes, culinary arts, executive dashboards)
+- 🍯 **Desert Bloom** (`#85511A` - Gastronomy, travel, editorial craftsmanship)
 
-2. **Selección en 1 Clic & Generación de `DESIGN.md` (Google Stitch Standard):**
-   - El usuario explora y presiona el botón **`[✨ Generar DESIGN.md con esta Paleta]`** en el esquema y modo de fondo que prefiera.
-   - El navegador transmite la selección al servidor local, el cual:
-     - Genera automáticamente el archivo **`DESIGN.md`** en la raíz del proyecto, apegado al estándar oficial de especificación de diseño ([Google Stitch Design-MD Spec](https://stitch.withgoogle.com/docs/design-md/specification/)), incluyendo YAML Front Matter con los tokens y Markdown explicativo de componentes y accesibilidad.
-     - Cierra el servidor y libera el puerto automáticamente.
+### 2. Surface / Background Modes
+- **Option A: Tonal M3 Color (Default):** The `Surface` canvas adopts the subtle tonal hue of the palette (e.g., `#F3F6E8` for Forest Sage).
+- **Option B: Pure White:** The `Surface` canvas is set to `#FFFFFF` and containers to `#F8F9FA`.
+- **Option C: Neutral Grayscale:** The `Surface` canvas is set to neutral gray (`#F5F5F7` / `#EEEEF0`).
 
-3. **Lectura de `DESIGN.md` y Construcción:**
-   - El agente lee el archivo `DESIGN.md` generado en la raíz del proyecto.
-   - Procede a implementar el proyecto aplicando **estrictamente esa única paleta semántica, contrastes y modo de superficie definidos en `DESIGN.md`**.
+---
 
+### 🚨 MANDATORY VISUAL SELECTION & `DESIGN.md` PROTOCOL:
+
+> [!IMPORTANT]
+> **STRICT PROHIBITION OF TEXT PROMPTING (`ask_question`):**
+> **NEVER** use the `ask_question` tool to ask which color palette or surface to use. Color harmonies and contrast cannot be evaluated via terminal text lists.
+
+**EXACT STEP-BY-STEP AGENT EXECUTION FLOW:**
+
+When the user requests to create or redesign an interface (e.g., *"create a task app..."*, *"design a dashboard..."*):
+
+1. **Launch the Interactive Visual Selector in Browser:**
+   Run immediately using `run_command`:
+   ```bash
+   npx vanilla-core-ui --preview
+   ```
+   *(This instantly opens the user's browser with the live interactive gallery, featuring real M3 buttons, WCAG AAA badges, and Light/Dark and Surface mode switchers).*
+
+2. **1-Click Browser Selection & `DESIGN.md` Generation:**
+   The user explores and clicks **`[Generate DESIGN.md with this Palette]`** on their chosen scheme.
+   The browser transmits the configuration to the local preview server, which:
+   - Automatically writes **`DESIGN.md`** at the project root conforming to the official [Google Stitch Design-MD Specification](https://stitch.withgoogle.com/docs/design-md/specification/), including YAML Front Matter design tokens and comprehensive architecture, layout, typography, elevation, and component guidelines.
+   - Gracefully terminates the preview server and releases the port immediately.
+
+3. **Read `DESIGN.md` & Construct UI:**
+   Read the newly generated `DESIGN.md` file using `view_file` and implement the application strictly adhering to the selected palette, typography, elevation, and layout rules defined inside `DESIGN.md`.
 
 ---
 
@@ -96,10 +107,11 @@ project-name/
 ├── public/              # Static assets.
 │   └── vendor/          # Offline MDC Web / Material Symbols (Optional/Material mode)
 ├── dom-elements.js      # Central mapping of GLOBAL DOM elements.
+├── DESIGN.md            # Generated Design Specification (Single Source of Truth for Design).
 ├── index.html           # App Shell.
 ├── load.js              # Startup script.
 ├── main.js              # App orchestrator and logic entry point.
-├── server.js            # Dev server.
+├── server.js            # Dev server with dynamic port discovery.
 ├── store.js             # The state and Pub/Sub system.
 ├── style.css            # Global styles & Tailwind / M3 Tokens entry point.
 ├── changelog.md         # History of changes (Prepend only).
@@ -126,12 +138,12 @@ Every line of code you generate must follow these **seven** non-negotiable princ
 
 ---
 
-## 📜 Full References & Documentation
+## 📜 References & Documentation
 
 Consult the references in `skills/vanilla-core-ui/references/` for full details:
-- [material-you-design-system.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/material-you-design-system.md) - Guía completa de tokens HCT, 10 paletas semánticas, 3 modos de superficie y contrastes WCAG AAA.
-- [material-catalog.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/material-catalog.md) - Catálogo exhaustivo de componentes Material Design 3.
-- [material-boilerplate.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/material-boilerplate.md) - Boilerplate listo para proyectos M3 con servidor web nativo.
-- [boilerplate.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/boilerplate.md) - Boilerplate estándar de Vanilla-Core.
-- [blueprints.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/blueprints.md) - Módulos del núcleo arquitectónico (`store.js`, `dom-elements.js`, `load.js`, `main.js`, `renderer.js`).
-- [component.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/component.md) - Patrón de componentes autocontenidos.
+- [material-you-design-system.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/material-you-design-system.md) - Complete guide to HCT tokens, 10 semantic palettes, 3 surface modes, and WCAG AAA contrast rules.
+- [material-catalog.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/material-catalog.md) - Exhaustive Material Design 3 component catalog.
+- [material-boilerplate.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/material-boilerplate.md) - Ready-to-use M3 project boilerplate with native async port checker.
+- [boilerplate.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/boilerplate.md) - Standard Vanilla-Core boilerplate.
+- [blueprints.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/blueprints.md) - Architectural core modules (`store.js`, `dom-elements.js`, `load.js`, `main.js`, `renderer.js`).
+- [component.md](file:///Users/felipe/.gemini/config/skills/vanilla-core-ui/references/component.md) - Self-contained component pattern.

@@ -9,8 +9,8 @@ const PALETTES = [
   {
     id: 'forest-sage',
     name: 'Forest Sage',
-    family: 'Verdes & Oliva',
-    desc: 'Verde Salvia Vibrante (Salud, meditación, sostenibilidad)',
+    family: 'Greens & Olive',
+    desc: 'Vibrant Sage Green (Health, meditation, sustainability, nature)',
     seed: '#426B29',
     light: {
       primary: '#426B29',
@@ -26,6 +26,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#A1D482',
@@ -41,13 +43,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'olive-slate',
     name: 'Olive Slate',
-    family: 'Verdes & Oliva',
-    desc: 'Verde Oliva Desaturado (Agricultura, finanzas éticas, lectura)',
+    family: 'Greens & Olive',
+    desc: 'Desaturated Olive Green (Agriculture, ethical finance, reading)',
     seed: '#5A641F',
     light: {
       primary: '#5A641F',
@@ -63,6 +67,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#C1CC7C',
@@ -78,13 +84,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'crimson-quartz',
     name: 'Crimson Quartz',
-    family: 'Rojos & Terracota',
-    desc: 'Rojo Carmesí Intenso (Fitness, alertas, comercio, noticias)',
+    family: 'Reds & Terracotta',
+    desc: 'Deep Crimson Red (Fitness, critical alerts, commerce, news)',
     seed: '#BB1834',
     light: {
       primary: '#BB1834',
@@ -100,6 +108,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#FFB3BA',
@@ -115,13 +125,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'terracotta-dusk',
     name: 'Terracotta Dusk',
-    family: 'Rojos & Terracota',
-    desc: 'Rojo Arcilla Orgánico (Redes sociales, eventos, interiorismo)',
+    family: 'Reds & Terracotta',
+    desc: 'Warm Earthy Terracotta (Social platforms, events, interior design)',
     seed: '#A24244',
     light: {
       primary: '#A24244',
@@ -137,6 +149,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#FFB3B4',
@@ -152,13 +166,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'lavender-breeze',
     name: 'Lavender Breeze',
-    family: 'Púrpuras & Violetas',
-    desc: 'Púrpura Semántico Clásico (Email, suites de productividad, dashboards)',
+    family: 'Purples & Violets',
+    desc: 'Canonical Semantic Purple (Email, productivity suites, SaaS dashboards)',
     seed: '#6750A4',
     light: {
       primary: '#6750A4',
@@ -174,6 +190,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#D0BCFF',
@@ -189,13 +207,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'orchid-velvet',
     name: 'Orchid Velvet',
-    family: 'Púrpuras & Violetas',
-    desc: 'Púrpura Orquídea Floral (Apps creativas, bienestar, belleza)',
+    family: 'Purples & Violets',
+    desc: 'Floral Orchid Purple (Creative studios, lifestyle, wellness, beauty)',
     seed: '#8E4A8D',
     light: {
       primary: '#8E4A8D',
@@ -211,6 +231,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#FFAEF5',
@@ -226,13 +248,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'oceanic-slate',
     name: 'Oceanic Slate',
-    family: 'Azules & Turquesas',
-    desc: 'Azul Pizarra Frío (Finanzas, analítica de datos, gestión corporativa)',
+    family: 'Blues & Teals',
+    desc: 'Crisp Oceanic Slate (Finance, data analytics, cloud architecture)',
     seed: '#2B638B',
     light: {
       primary: '#2B638B',
@@ -248,6 +272,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#96CCF8',
@@ -263,13 +289,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'aqua-frost',
     name: 'Aqua Frost',
-    family: 'Azules & Turquesas',
-    desc: 'Turquesa Gélido Clínico (Telemedicina, clima, monitorización)',
+    family: 'Blues & Teals',
+    desc: 'Clinical Aqua Frost (Telemedicine, weather, telemetry, infrastructure)',
     seed: '#006874',
     light: {
       primary: '#006874',
@@ -285,6 +313,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#4FD8EB',
@@ -300,13 +330,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'golden-amber',
     name: 'Golden Amber',
-    family: 'Orgánicos & Ámbar',
-    desc: 'Dorado Miel Luminoso (Notas, recetas, interfaces artesanales)',
+    family: 'Organics & Amber',
+    desc: 'Luminous Honey Amber (Notes, recipes, culinary arts, executive dashboards)',
     seed: '#7A5900',
     light: {
       primary: '#7A5900',
@@ -322,6 +354,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#F6BD48',
@@ -337,13 +371,15 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   },
   {
     id: 'desert-bloom',
     name: 'Desert Bloom',
-    family: 'Orgánicos & Ámbar',
-    desc: 'Naranja Tierra Siena (Gastronomía, artesanía, rústico, viajes)',
+    family: 'Organics & Amber',
+    desc: 'Warm Sienna Earth (Gastronomy, travel, editorial craftsmanship)',
     seed: '#85511A',
     light: {
       primary: '#85511A',
@@ -359,6 +395,8 @@ const PALETTES = [
       badgeSuccessText: '#0A3E10',
       badgeErrorBg: '#FFDAD6',
       badgeErrorText: '#410002',
+      badgeWarningBg: '#FFE082',
+      badgeWarningText: '#4D3800',
     },
     dark: {
       primary: '#FFB77B',
@@ -374,6 +412,8 @@ const PALETTES = [
       badgeSuccessText: '#B9F6CA',
       badgeErrorBg: '#3F2023',
       badgeErrorText: '#FFCDD2',
+      badgeWarningBg: '#4A3B18',
+      badgeWarningText: '#FFE082',
     }
   }
 ];
@@ -398,54 +438,54 @@ function dot(hex) {
 function showPalette(themeId) {
   const palette = PALETTES.find(p => p.id === themeId || p.name.toLowerCase() === (themeId || '').toLowerCase());
   if (!palette) {
-    console.error(`❌ Paleta '${themeId}' no encontrada.`);
+    console.error(`❌ Palette '${themeId}' not found.`);
     showAllPalettesSummary();
     return;
   }
 
   console.log('\n' + '═'.repeat(74));
-  console.log(`  🎨 ESQUEMA SELECCIONADO: ${palette.name.toUpperCase()} (${palette.seed})`);
-  console.log(`  Familia: ${palette.family} | ${palette.desc}`);
+  console.log(`  🎨 SELECTED SCHEME: ${palette.name.toUpperCase()} (${palette.seed})`);
+  console.log(`  Family: ${palette.family} | ${palette.desc}`);
   console.log('═'.repeat(74));
 
   // Render Light Mode
   console.log('\n  ☀️  [ LIGHT MODE ]');
   console.log('  ─────────────────────────────────────────────────────────────');
-  console.log(`  Superficie Base:      ${swatch(palette.light.surface, palette.light.onSurface, ' Surface Base Canvas ')}  ${palette.light.surface}`);
-  console.log(`  Tarjeta Contenedor:   ${swatch(palette.light.surfaceContainer, palette.light.onSurface, ' Card Surface Container ')}  ${palette.light.surfaceContainer}`);
-  console.log(`  Botón Primario:       ${swatch(palette.light.primary, palette.light.onPrimary, ' [ Primary Button ] ')}  ${palette.light.primary}`);
-  console.log(`  Ítem Activo / FAB:    ${swatch(palette.light.primaryContainer, palette.light.onPrimaryContainer, ' [ Primary Container ] ')}  ${palette.light.primaryContainer}`);
-  console.log(`  Badge Éxito (AAA):    ${swatch(palette.light.badgeSuccessBg, palette.light.badgeSuccessText, ' +14.8% Activo ')}  ${swatch(palette.light.badgeErrorBg, palette.light.badgeErrorText, ' -3.2% Error ')}`);
+  console.log(`  Surface Canvas:       ${swatch(palette.light.surface, palette.light.onSurface, ' Surface Base Canvas ')}  ${palette.light.surface}`);
+  console.log(`  Container / Card:     ${swatch(palette.light.surfaceContainer, palette.light.onSurface, ' Card Surface Container ')}  ${palette.light.surfaceContainer}`);
+  console.log(`  Primary Button:       ${swatch(palette.light.primary, palette.light.onPrimary, ' [ Primary Button ] ')}  ${palette.light.primary}`);
+  console.log(`  Active Item / FAB:    ${swatch(palette.light.primaryContainer, palette.light.onPrimaryContainer, ' [ Primary Container ] ')}  ${palette.light.primaryContainer}`);
+  console.log(`  Success Badge (AAA):  ${swatch(palette.light.badgeSuccessBg, palette.light.badgeSuccessText, ' +14.8% Active ')}  ${swatch(palette.light.badgeErrorBg, palette.light.badgeErrorText, ' -3.2% Error ')}`);
 
   // Render Dark Mode
   console.log('\n  🌙  [ DARK MODE ]');
   console.log('  ─────────────────────────────────────────────────────────────');
-  console.log(`  Superficie Base:      ${swatch(palette.dark.surface, palette.dark.onSurface, ' Surface Base Canvas ')}  ${palette.dark.surface}`);
-  console.log(`  Tarjeta Contenedor:   ${swatch(palette.dark.surfaceContainer, palette.dark.onSurface, ' Card Surface Container ')}  ${palette.dark.surfaceContainer}`);
-  console.log(`  Botón Primario:       ${swatch(palette.dark.primary, palette.dark.onPrimary, ' [ Primary Button ] ')}  ${palette.dark.primary}`);
-  console.log(`  Ítem Activo / FAB:    ${swatch(palette.dark.primaryContainer, palette.dark.onPrimaryContainer, ' [ Primary Container ] ')}  ${palette.dark.primaryContainer}`);
-  console.log(`  Badge Éxito (AAA):    ${swatch(palette.dark.badgeSuccessBg, palette.dark.badgeSuccessText, ' +14.8% Activo ')}  ${swatch(palette.dark.badgeErrorBg, palette.dark.badgeErrorText, ' -3.2% Error ')}`);
+  console.log(`  Surface Canvas:       ${swatch(palette.dark.surface, palette.dark.onSurface, ' Surface Base Canvas ')}  ${palette.dark.surface}`);
+  console.log(`  Container / Card:     ${swatch(palette.dark.surfaceContainer, palette.dark.onSurface, ' Card Surface Container ')}  ${palette.dark.surfaceContainer}`);
+  console.log(`  Primary Button:       ${swatch(palette.dark.primary, palette.dark.onPrimary, ' [ Primary Button ] ')}  ${palette.dark.primary}`);
+  console.log(`  Active Item / FAB:    ${swatch(palette.dark.primaryContainer, palette.dark.onPrimaryContainer, ' [ Primary Container ] ')}  ${palette.dark.primaryContainer}`);
+  console.log(`  Success Badge (AAA):  ${swatch(palette.dark.badgeSuccessBg, palette.dark.badgeSuccessText, ' +14.8% Active ')}  ${swatch(palette.dark.badgeErrorBg, palette.dark.badgeErrorText, ' -3.2% Error ')}`);
 
   // Render Surface Mode Options
-  console.log('\n  🏛️  [ 3 MODOS DE FONDO / SUPERFICIE DISPONIBLES ]');
+  console.log('\n  🏛️  [ 3 AVAILABLE SURFACE / BACKGROUND MODES ]');
   console.log('  ─────────────────────────────────────────────────────────────');
-  console.log(`  1. Color Tonal Propio: ${swatch(palette.light.surface, palette.light.onSurface, ' Fondo Tonal M3 ')} (${palette.light.surface})`);
-  console.log(`  2. Blanco Puro:        ${swatch('#FFFFFF', '#1A1A1A', ' Fondo Blanco Puro ')} (#FFFFFF / Tarjetas #F8F9FA)`);
-  console.log(`  3. Escala de Grises:   ${swatch('#F5F5F7', '#1A1A1A', ' Fondo Gris Neutro ')} (#F5F5F7 / Tarjetas #EEEEF0)`);
+  console.log(`  1. Tonal M3 Color:     ${swatch(palette.light.surface, palette.light.onSurface, ' Tonal M3 Canvas ')} (${palette.light.surface})`);
+  console.log(`  2. Pure White:         ${swatch('#FFFFFF', '#1A1A1A', ' Pure White Canvas ')} (#FFFFFF / Cards #F8F9FA)`);
+  console.log(`  3. Neutral Grayscale:  ${swatch('#F5F5F7', '#1A1A1A', ' Neutral Gray Canvas ')} (#F5F5F7 / Cards #EEEEF0)`);
   console.log('═'.repeat(74) + '\n');
 }
 
 function showAllPalettesSummary() {
   console.log('\n' + '═'.repeat(74));
-  console.log('  🎨 CATÁLOGO DE LOS 10 ESQUEMAS SEMÁNTICOS MATERIAL DESIGN 3');
-  console.log('  (Previsualización nativa Truecolor de 24-bits)');
+  console.log('  🎨 MATERIAL DESIGN 3 — 10 CANONICAL SEMANTIC COLOR SCHEMES');
+  console.log('  (Native 24-bit Truecolor Preview)');
   console.log('═'.repeat(74) + '\n');
 
   let currentFamily = '';
   PALETTES.forEach((p, idx) => {
     if (p.family !== currentFamily) {
       currentFamily = p.family;
-      console.log(`\n  📂 FAMILIA: ${currentFamily.toUpperCase()}`);
+      console.log(`\n  📂 FAMILY: ${currentFamily.toUpperCase()}`);
       console.log('  ' + '─'.repeat(70));
     }
 
@@ -456,13 +496,13 @@ function showAllPalettesSummary() {
 
     console.log(`  ${dot(p.seed)} ${(idx + 1).toString().padStart(2, ' ')}. ${p.name.padEnd(18, ' ')} [${p.seed}]`);
     console.log(`      Light: ${btnLight} ${containerLight} ${surfLight}  | Dark: ${btnDark}`);
-    console.log(`      Uso:   ${p.desc}`);
+    console.log(`      Usage: ${p.desc}`);
   });
 
   console.log('\n' + '═'.repeat(74));
-  console.log('  💡 Para inspeccionar una paleta en detalle con Light/Dark mode:');
-  console.log('     npx vanilla-core-ui --palettes <nombre-o-id>');
-  console.log('     Ejemplo: npx vanilla-core-ui --palettes forest-sage');
+  console.log('  💡 To inspect a single palette in detail:');
+  console.log('     npx vanilla-core-ui --palettes <palette-name-or-id>');
+  console.log('     Example: npx vanilla-core-ui --palettes forest-sage');
   console.log('═'.repeat(74) + '\n');
 }
 
@@ -472,7 +512,6 @@ module.exports = {
   showAllPalettesSummary
 };
 
-// Direct execution CLI check
 if (require.main === module) {
   const arg = process.argv[2];
   if (arg && !arg.startsWith('--')) {
@@ -481,4 +520,3 @@ if (require.main === module) {
     showAllPalettesSummary();
   }
 }
-
