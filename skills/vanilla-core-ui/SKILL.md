@@ -85,9 +85,14 @@ El agente DEBE validar qué tipo de fondo prefiere el usuario:
 
 ### 🤖 Flujo Interactivo del Agente:
 Cuando el usuario solicita crear una interfaz ("crea una app de..."):
-1. El agente muestra el listado con los propósitos recomendados de cada paleta.
-2. El agente utiliza el modal interactivo de selección (`ask_question`) o espera la respuesta del usuario para confirmar la paleta y el modo de superficie elegidos.
-3. El agente genera el código implementando **únicamente los tokens de esa paleta elegida**.
+1. **Presentación Visual en Chat (Sin depender de consola colapsada):** El agente SIEMPRE debe renderizar en su mensaje de respuesta una **Tabla Visual Markdown** con los códigos hexadecimales, nombres, propósitos y contrastes claros, de modo que el usuario los vea inmediatamente en la conversación sin tener que expandir logs de terminal.
+2. **Modal Interactivo (`ask_question`):** El agente despliega el modal interactivo de selección de opciones para que el usuario elija su paleta y su modo de fondo en 1 clic.
+3. **Galería Visual HTML Opcional:** Si el usuario quiere ver las 10 paletas renderizadas visualmente en su navegador, puede ejecutar:
+   ```bash
+   npx vanilla-core-ui --preview
+   ```
+4. **Construcción con Paleta Única:** El agente genera el código implementando **estrictamente esa única paleta elegida**.
+
 
 
 

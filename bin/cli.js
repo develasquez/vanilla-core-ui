@@ -8,6 +8,14 @@ const args = process.argv.slice(2);
 const isGlobal = args.includes('--global') || args.includes('-g');
 const isHelp = args.includes('--help') || args.includes('-h');
 const isPalettes = args.includes('--palettes') || args.includes('-p');
+const isPreview = args.includes('--preview') || args.includes('--html');
+
+if (isPreview) {
+  const { openPreview } = require('./preview.js');
+  openPreview();
+  // Keep process alive for web preview
+  return;
+}
 
 if (isPalettes) {
   const { showPalette, showAllPalettesSummary } = require('./palettes.js');
@@ -28,6 +36,7 @@ Usage:
   npx vanilla-core-ui             Install skill into local workspace (.agents/skills/vanilla-core-ui)
   npx vanilla-core-ui --global    Install skill globally (~/.gemini/config/skills/vanilla-core-ui)
   npx vanilla-core-ui --palettes  Show Truecolor 24-bit terminal preview of the 10 M3 color palettes
+  npx vanilla-core-ui --preview   Open interactive visual HTML palette gallery in your browser
   npx vanilla-core-ui --help      Show help message
 
 AI Agent Slash Commands supported:
@@ -36,6 +45,7 @@ AI Agent Slash Commands supported:
 `);
   process.exit(0);
 }
+
 
 
 const sourceDir = path.join(__dirname, '..', 'skills', 'vanilla-core-ui');
