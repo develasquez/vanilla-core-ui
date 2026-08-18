@@ -83,12 +83,28 @@ El agente DEBE validar qué tipo de fondo prefiere el usuario:
 - **Opción B: Blanco Puro:** El fondo `Surface` se establece en `#FFFFFF` y los contenedores en `#F8F9FA`.
 - **Opción C: Escala de Grises / Neutro:** El fondo `Surface` se establece en gris neutro (`#F5F5F7` / `#EEEEF0`).
 
-### 🤖 Flujo Interactivo del Agente:
-Cuando el usuario solicita crear una interfaz ("crea una app de..."):
-1. **Presentación Visual en Chat:** El agente renderiza la tabla comparativa con los esquemas recomendados.
-2. **Modal Interactivo (`ask_question`):** El agente despliega el modal interactivo de selección rápida.
-3. **Selector Visual en Navegador (`--preview`):** El usuario también puede explorar y hacer clic en **`[Seleccionar esta Paleta]`** directamente en la galería web (`npx vanilla-core-ui --preview`). Al hacer clic en el navegador, el servidor guarda la elección en `.vanilla-core-selection.json`, transmite los parámetros a la terminal y libera el puerto automáticamente.
-4. **Construcción con Paleta Única:** El agente genera el código implementando **estrictamente esa única paleta elegida**.
+### 🤖 Flujo Interactivo Automatizado del Agente:
+
+Cuando el usuario solicita crear o rediseñar una interfaz (ej. *"crea una app de...", "diseña un dashboard..."*):
+
+1. **Lanzamiento Automático del Selector Visual:**
+   - El agente **NO** debe abrumar al usuario con largos cuestionarios de texto en la consola.
+   - En su lugar, el agente ejecuta directamente el selector visual interactivo:
+     ```bash
+     npx vanilla-core-ui --preview
+     ```
+   - Esto abre instantáneamente la galería interactiva en el navegador del usuario con los 10 esquemas M3 reales, botones, badges WCAG AAA y alternadores de modo claro/oscuro y superficie.
+
+2. **Selección en 1 Clic desde el Navegador:**
+   - El usuario explora y presiona el botón **`[✨ Seleccionar esta Paleta]`** en el esquema y modo de fondo que prefiera.
+   - El navegador envía la configuración al servidor local, el cual:
+     - Guarda la elección en `.vanilla-core-selection.json`.
+     - Cierra el servidor y libera el puerto automáticamente.
+
+3. **Lectura y Construcción con la Paleta Elegida:**
+   - El agente lee el archivo `.vanilla-core-selection.json` generado.
+   - Procede a implementar el proyecto aplicando **estrictamente esa única paleta semántica y el modo de superficie seleccionados**.
+
 
 
 
