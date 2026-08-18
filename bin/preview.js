@@ -33,6 +33,9 @@ function generateHtmlPreview() {
       <p class="text-sm text-gray-400 mt-1">Previsualización interactiva de tokens, contrastes WCAG AAA y modos de superficie para Vanilla-Core</p>
     </div>
     <div class="flex items-center gap-3">
+      <button id="btn-shutdown" class="text-xs px-3 py-1.5 rounded-full bg-red-950 text-red-300 font-semibold border border-red-800/50 hover:bg-red-900 transition-colors flex items-center gap-1.5">
+        <span>🛑</span> Cerrar Visor & Liberar Puerto
+      </button>
       <span class="text-xs px-3 py-1.5 rounded-full bg-blue-950 text-blue-300 font-semibold border border-blue-800/50">100% Offline Compatible</span>
       <span class="text-xs px-3 py-1.5 rounded-full bg-emerald-950 text-emerald-300 font-semibold border border-emerald-800/50">WCAG AAA Certified</span>
     </div>
@@ -101,6 +104,17 @@ function generateHtmlPreview() {
       </div>
     `).join('')}
   </div>
+
+  <script>
+    document.getElementById('btn-shutdown')?.addEventListener('click', async () => {
+      try {
+        await fetch('/shutdown');
+        document.body.innerHTML = '<div class="min-h-screen flex flex-col items-center justify-center text-center p-6"><h1 class="text-2xl font-bold text-white mb-2">🛑 Servidor Detenido con Éxito</h1><p class="text-gray-400 text-sm">El puerto local ha sido liberado. Puedes cerrar esta pestaña.</p></div>';
+      } catch (e) {
+        window.close();
+      }
+    });
+  </script>
 </body>
 </html>`;
 }
@@ -108,6 +122,19 @@ function generateHtmlPreview() {
 function openPreview(port = 4500) {
   const html = generateHtmlPreview();
   const server = http.createServer((req, res) => {
+    if (req.url === '/shutdown') {
+      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('Server shutting down...');
+      console.log('\n🛑 Solicitud de cierre recibida desde el navegador.');
+      setTimeout(() => {
+        server.close(() => {
+          console.log('✅ Puerto liberado con éxito.\n');
+          process.exit(0);
+        });
+      }, 300);
+      return;
+    }
+
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
   });
@@ -123,22 +150,44 @@ function openPreview(port = 4500) {
   server.listen(port, () => {
     const url = `http://localhost:${port}`;
     console.log(`\n🎨 Galería Visual de Paletas M3 activa en: ${url}`);
-    console.log(`💡 Presiona Ctrl + C en la terminal para detener el servidor y liberar el puerto.\n`);
+    console.log(`💡 Para detener el servidor puedes:`);
+    console.log(`   1. Presionar Ctrl + C o la tecla 'q' en esta terminal`);
+    console.log(`   2. Hacer clic en el botón [🛑 Cerrar Visor] en la página web\n`);
     
     // Auto open in default browser
     const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
     exec(`${startCmd} ${url}`, () => {});
   });
 
-  process.on('SIGINT', () => {
-    console.log('\n🛑 Cerrando servidor de previsualización...');
+  // Handle terminal keyboard inputs
+  if (process.stdin.isTTY) {
+    try {
+      process.stdin.setRawMode(true);
+      process.stdin.resume();
+      process.stdin.setEncoding('utf8');
+      process.stdin.on('data', (key) => {
+        // Ctrl+C (3) or 'q' or Esc (27)
+        if (key === '\u0003' || key === 'q' || key === 'Q' || key === '\u001b') {
+          console.log('\n🛑 Deteniendo servidor...');
+          server.close(() => {
+            console.log('✅ Puerto liberado con éxito. ¡Hasta luego!\n');
+            process.exit(0);
+          });
+        }
+      });
+    } catch (e) {}
+  }
+
+  const exitHandler = () => {
     server.close(() => {
-      console.log('✅ Puerto liberado. ¡Hasta luego!\n');
       process.exit(0);
     });
-  });
-}
+  };
 
+  process.on('SIGINT', exitHandler);
+  process.on('SIGTERM', exitHandler);
+  process.on('SIGHUP', exitHandler);
+}
 
 module.exports = {
   generateHtmlPreview,
