@@ -10,25 +10,46 @@ function generateDesignMd(selection) {
   const surfaceMode = selection.surfaceMode || 'tonal';
   
   let lightSurface = p.light.surface;
+  let lightContainerLow = '#F8F5FD';
+  let lightContainer = '#EDE8F5';
+  let lightContainerHigh = '#FAF8FE';
   let lightCard = '#FFFFFF';
+
   let darkSurface = p.dark.surface;
+  let darkContainerLow = '#1A1C1E';
+  let darkContainer = '#1E2023';
+  let darkContainerHigh = '#282A2D';
   let darkCard = '#1C1B1F';
 
   if (surfaceMode === 'white') {
     lightSurface = '#FFFFFF';
+    lightContainerLow = '#FAFAFB';
+    lightContainer = '#F1F3F5';
+    lightContainerHigh = '#FFFFFF';
     lightCard = '#F8F9FA';
+
     darkSurface = '#0D0E11';
+    darkContainerLow = '#141619';
+    darkContainer = '#181A1D';
+    darkContainerHigh = '#202327';
     darkCard = '#181A1D';
   } else if (surfaceMode === 'gray') {
     lightSurface = '#F5F5F7';
+    lightContainerLow = '#ECECF0';
+    lightContainer = '#EEEEF0';
+    lightContainerHigh = '#FFFFFF';
     lightCard = '#FFFFFF';
+
     darkSurface = '#121316';
+    darkContainerLow = '#18191D';
+    darkContainer = '#1E2023';
+    darkContainerHigh = '#282A2D';
     darkCard = '#1E2023';
   }
 
   return `---
-name: "${p.name} — Vanilla-Core M3 Design System"
-version: "1.0.0"
+name: "${p.name} — Vanilla-Core M3 Architecture & Design System"
+version: "1.1.0"
 spec: "https://stitch.withgoogle.com/docs/design-md/specification/"
 theme:
   default: "${selection.theme || 'light'}"
@@ -45,12 +66,15 @@ colors:
     secondaryContainer: "${p.light.secondaryContainer}"
     onSecondaryContainer: "${p.light.onSecondaryContainer}"
     surface: "${lightSurface}"
+    surfaceContainerLow: "${lightContainerLow}"
+    surfaceContainer: "${lightContainer}"
+    surfaceContainerHigh: "${lightContainerHigh}"
     surfaceContainerLowest: "${lightCard}"
-    surfaceContainer: "${surfaceMode === 'white' ? '#F1F3F5' : surfaceMode === 'gray' ? '#EEEEF0' : p.light.surfaceContainer}"
     onSurface: "${p.light.onSurface}"
     onSurfaceVariant: "${p.light.onSurfaceVariant}"
     outline: "${p.light.outline}"
     outlineVariant: "${p.light.outlineVariant}"
+    scrim: "rgba(0, 0, 0, 0.3)"
     badgeSuccessBg: "${p.light.badgeSuccessBg}"
     badgeSuccessText: "${p.light.badgeSuccessText}"
     badgeErrorBg: "${p.light.badgeErrorBg}"
@@ -65,12 +89,15 @@ colors:
     secondaryContainer: "${p.dark.secondaryContainer}"
     onSecondaryContainer: "${p.dark.onSecondaryContainer}"
     surface: "${darkSurface}"
+    surfaceContainerLow: "${darkContainerLow}"
+    surfaceContainer: "${darkContainer}"
+    surfaceContainerHigh: "${darkContainerHigh}"
     surfaceContainerLowest: "${darkCard}"
-    surfaceContainer: "${surfaceMode === 'white' ? '#181A1D' : surfaceMode === 'gray' ? '#1E2023' : p.dark.surfaceContainer}"
     onSurface: "${p.dark.onSurface}"
     onSurfaceVariant: "${p.dark.onSurfaceVariant}"
     outline: "${p.dark.outline}"
     outlineVariant: "${p.dark.outlineVariant}"
+    scrim: "rgba(0, 0, 0, 0.6)"
     badgeSuccessBg: "${p.dark.badgeSuccessBg}"
     badgeSuccessText: "${p.dark.badgeSuccessText}"
     badgeErrorBg: "${p.dark.badgeErrorBg}"
@@ -84,12 +111,11 @@ typography:
     medium: 500
     bold: 700
   scale:
-    h1: "1.75rem"
-    h2: "1.25rem"
-    h3: "1rem"
-    body: "0.875rem"
-    caption: "0.75rem"
-    badge: "0.6875rem"
+    display: { size: "24px", lineHeight: "1.2", weight: "bold" }
+    cardTitle: { size: "16px", lineHeight: "1.3", weight: "semibold" }
+    body: { size: "14px", lineHeight: "1.45", weight: "regular" }
+    subtext: { size: "12px", lineHeight: "1.3", weight: "regular" }
+    badge: { size: "11px", lineHeight: "1", weight: "bold" }
 spacing:
   xs: "4px"
   sm: "8px"
@@ -97,46 +123,168 @@ spacing:
   lg: "24px"
   xl: "32px"
 rounded:
-  extraSmall: "4px"
-  small: "8px"
-  medium: "12px"
-  large: "16px"
-  extraLarge: "24px"
-  full: "9999px"
+  appFrame: "28px"
+  modalDrawer: "28px"
+  dialog: "28px"
+  card: "22px"
+  innerMedia: "16px"
+  input: "8px"
+  pill: "9999px"
+breakpoints:
+  compact: "< 600px"
+  medium: "600px - 839px"
+  expanded: ">= 840px"
 ---
 
-# ${p.name} — Design Specification
+# Guía de Estilo y Sistema de Arquitectura UI: ${p.name}
+> Especificación Técnica Exhaustiva Material Design 3 (M3 / Material You) + Vanilla-Core
 
-## 1. Visual Theme & Atmosphere (The "Why")
-* **Design Philosophy:** Clean, accessible Material 3 / Material You architecture combined with Vanilla-Core state decoupling.
-* **Atmosphere:** ${p.desc}
-* **Surface Strategy:** \`${selection.surfaceLabel || surfaceMode}\`.
-* **Contrast Compliance:** Certified **WCAG AAA** (contrast ratio $\\ge 7:1$) on all primary interactive badges and core typography.
+---
 
-## 2. Color Palette & Semantic Usage
-* **Primary (\`${isDark ? p.dark.primary : p.light.primary}\`):** Used exclusively for key interactive drivers, primary buttons (\`md-filled-button\`), active indicator states, and progress fills.
-* **Primary Container (\`${isDark ? p.dark.primaryContainer : p.light.primaryContainer}\`):** Tonal accent for active list selections, active navigation indicator pills, and featured cards.
-* **Surface (\`${isDark ? darkSurface : lightSurface}\`):** Canvas background adhering to the selected surface mode.
-* **Surface Container Lowest (\`${isDark ? darkCard : lightCard}\`):** Elevated cards, kanban boards, and content modules.
+## 1. Tokens Dinámicos y Sistema de Color (Core Palette)
 
-## 3. Typography & Micro-copy Rules
-* **Font Family:** \`Roboto, system-ui, sans-serif\` with clear visual hierarchy.
-* **Tracking & Kerning:** Tight tracking on headings (\`tracking-tight\`), clean readability on body copy (\`leading-relaxed\`).
-* **Semantic Hierarchy:** Single \`<h1>\` per view, \`<h3>\` for module headers, \`caption\` for metadata and timestamps.
+El agente **no debe usar colores estáticos en código duro**, sino **Mapeo Dinámico por Roles Semánticos** derivados del Seed Color oficial (\`${p.seed}\`).
 
-## 4. Component-Specific Implementation
-* **Buttons (\`md-filled-button\`, \`md-text-button\`, \`md-outlined-button\`):** Full pill radius (\`--md-shape-corner-full\`), interactive ripple, distinct focus rings.
-* **Status Badges (WCAG AAA):**
-  - **Success / Positive:** \`bg: ${isDark ? p.dark.badgeSuccessBg : p.light.badgeSuccessBg}\`, \`text: ${isDark ? p.dark.badgeSuccessText : p.light.badgeSuccessText}\`
-  - **Error / Critical:** \`bg: ${isDark ? p.dark.badgeErrorBg : p.light.badgeErrorBg}\`, \`text: ${isDark ? p.dark.badgeErrorText : p.light.badgeErrorText}\`
-  - **Warning / Alert:** \`bg: ${isDark ? p.dark.badgeWarningBg : p.light.badgeWarningBg}\`, \`text: ${isDark ? p.dark.badgeWarningText : p.light.badgeWarningText}\`
-* **Dialogs & Modals (\`md-dialog\`):** Modal presentation with backdrop scrim, centered actions, and Focus Guard.
-* **Inputs & Form Controls (\`md-outlined-text-field\`):** Outlined styling with floating labels and surgical state binding.
+### A. Estructura de Tokens Cromáticos
 
-## 5. Layout & Architectural Principles (Vanilla-Core)
-* **Single Source of Truth (SSoT):** Entire dynamic state lives in \`store.js\`.
-* **Surgical Rendering:** Zero destructive \`innerHTML\` re-renders on active form inputs.
-* **Responsive Breakpoints:** Fluid container scaling (\`max-w-7xl\`), collapsible sidebars with width/flex-basis animation, and bottom navigation bar on mobile viewports.
+| Token Semántico | Uso en Interfaz | Modo Claro (${selection.surfaceLabel || 'Tonal'}) | Modo Oscuro |
+| :--- | :--- | :--- | :--- |
+| **\`Primary\`** | Botón primario activo, FABs, líneas de acento e iconos clave. | \`${p.light.primary}\` | \`${p.dark.primary}\` |
+| **\`On Primary\`** | Texto e iconos sobre superficie \`Primary\`. | \`${p.light.onPrimary}\` | \`${p.dark.onPrimary}\` |
+| **\`Primary Container\`** | Tarjeta seleccionada, FAB extendido, píldora de filtro seleccionada. | \`${p.light.primaryContainer}\` | \`${p.dark.primaryContainer}\` |
+| **\`On Primary Container\`** | Texto e iconos dentro de elementos \`Primary Container\`. | \`${p.light.onPrimaryContainer}\` | \`${p.dark.onPrimaryContainer}\` |
+| **\`Secondary Container\`** | Píldora indicadora en barras de navegación (Bottom Nav). | \`${p.light.secondaryContainer}\` | \`${p.dark.secondaryContainer}\` |
+| **\`On Secondary Container\`** | Texto e icono del ítem activo en la barra de navegación. | \`${p.light.onSecondaryContainer}\` | \`${p.dark.onSecondaryContainer}\` |
+| **\`Surface\`** | Lienzo exterior o fondo base del marco de la aplicación. | \`${lightSurface}\` | \`${darkSurface}\` |
+| **\`Surface Container Low\`** | Fondo de barras laterales fijas (*Standard Drawer* / Subpaneles). | \`${lightContainerLow}\` | \`${darkContainerLow}\` |
+| **\`Surface Container\`** | Tarjetas inactivas, barra de búsqueda, campos neutros. | \`${lightContainer}\` | \`${darkContainer}\` |
+| **\`Surface Container High\`** | Modales flotantes, menús *Drawer* superpuestos, tarjetas elevadas. | \`${lightContainerHigh}\` | \`${darkContainerHigh}\` |
+| **\`Surface Container Lowest\`** | Tarjetas Kanban, módulos principales de contenido. | \`${lightCard}\` | \`${darkCard}\` |
+| **\`On Surface\`** | Titulares principales, nombres de contacto, texto primario. | \`${p.light.onSurface}\` | \`${p.dark.onSurface}\` |
+| **\`On Surface Variant\`** | Fechas, texto secundario, iconos inactivos, leyendas. | \`${p.light.onSurfaceVariant}\` | \`${p.dark.onSurfaceVariant}\` |
+| **\`Outline\`** | Bordes finos de inputs, chips inactivos, botones *Outlined*. | \`${p.light.outline}\` | \`${p.dark.outline}\` |
+| **\`Outline Variant\`** | Líneas divisorias (*Dividers*) entre secciones de listas. | \`${p.light.outlineVariant}\` | \`${p.dark.outlineVariant}\` |
+| **\`Scrim\`** | Capa de oscurecimiento tras diálogos o menús modales. | \`rgba(0,0,0,0.3)\` | \`rgba(0,0,0,0.6)\` |
+
+### B. Regla Estricta de Elevación (Flat Depth Architecture)
+
+* **Queda estrictamente prohibido usar sombras oscuras proyectadas (\`box-shadow\`) para tarjetas regulares.**
+* La elevación se calcula mediante la luminosidad y tono de la superficie:
+  - **Profundidad 0 (Lienzo):** \`Surface\`
+  - **Profundidad 1 (Contenido plano / Listas):** \`Surface Container\`
+  - **Profundidad 2 (Paneles / Modales / Menús):** \`Surface Container High\`
+
+---
+
+## 2. Geometría, Sistema de Bordes y Tipografía
+
+### A. Jerarquía de Radios de Borde (\`border-radius\`)
+
+El agente debe aplicar rigurosamente las siguientes medidas según la jerarquía de anidación:
+
+* **Marco Exterior de la Aplicación:** \`28px\` a \`32px\`
+* **Contenedor Modal / Navigation Drawer Modal:** \`28px\`
+* **Diálogo Flotante (Basic Dialog / \`md-dialog\`):** \`28px\`
+* **Tarjetas Principales (Message Cards / Media Cards / Kanban Cards):** \`20px\` a \`24px\`
+* **Imágenes o Adjuntos dentro de una Tarjeta:** \`16px\` *(Regla de Anidación: El hijo siempre tiene un radio menor que el contenedor padre)*.
+* **Campos de Entrada (Outlined Inputs / Forms / \`md-outlined-text-field\`):** \`4px\` a \`8px\`
+* **Píldoras, Botones, Barra de Búsqueda y Avatares:** \`9999px\` (*Full Pill*)
+
+### B. Especificaciones Tipográficas
+
+* **Tipografía Base:** Sans-serif moderna y limpia (\`Roboto\`, \`Google Sans\` o \`system-ui\`).
+* **Display / Header (\`App Titles\`):** \`22px\` - \`24px\` | Regular/Medium | Line-height: \`1.2\`
+* **Card Titles (\`Nombres / Asuntos / Tareas\`):** \`16px\` - \`18px\` | Semibold/Bold | Line-height: \`1.3\`
+* **Body Text (\`Cuerpo de Mensajes / Descripciones\`):** \`14px\` - \`15px\` | Regular | Line-height: \`1.45\`
+* **Subtext & Metadata (\`Fechas / Subtítulos / Tags\`):** \`12px\` - \`13px\` | Regular | Color: \`On Surface Variant\`
+* **Badges WCAG AAA:** \`11px\` | Bold | Line-height: \`1\` | Padding: \`3px 9px\` | Contraste $\\ge 7:1$
+
+---
+
+## 3. Disposición y Adaptabilidad (Layout & Responsiveness)
+
+El diseño de pantalla utiliza un sistema de rejilla flexible (*Flexbox / CSS Grid*) controlado por los breakpoints canónicos:
+
+### A. Breakpoints de Pantalla
+
+* **Compact (Mobile):** \`< 600px\`
+* **Medium (Tablet / Foldables):** \`600px - 839px\`
+* **Expanded (Desktop / Web):** \`≥ 840px\`
+
+### B. Tabla de Mapeo Adaptable de Layouts
+
+| Componente | Mobile (\`< 600px\`) | Tablet (\`600px - 839px\`) | Desktop (\`≥ 840px\`) |
+| :--- | :--- | :--- | :--- |
+| **Navegación Principal** | **Bottom Navigation Bar** fija inferior (Alto: \`80px\`). | **Navigation Rail** lateral estrecho izquierdo (Ancho: \`64px - 72px\`). | **Navigation Drawer** lateral extendido (Ancho: \`240px - 280px\`). |
+| **Estructura de Pantalla** | **Single Pane Layout**: Una sola columna a pantalla completa. | **Single Pane amplio**: Columna central con márgenes automáticos. | **Dual / 3-Pane Layout**: Paneles concurrentes lado a lado. |
+| **Botón de Acción (FAB)** | **FAB Circular** flotante en la esquina inferior derecha. | **FAB Circular** ubicado dentro del área principal. | **Extended FAB** con texto en la parte superior del panel de navegación. |
+| **Modales de Navegación** | **Modal Drawer** deslizable que cubre el contenido con \`Scrim\`. | **Standard Drawer** integrado o **Modal Drawer**. | **Standard Drawer** permanente, acoplado al grid sin capa de oscurecimiento. |
+
+---
+
+## 4. Especificación Detallada de Componentes Clave
+
+### A. Barra de Búsqueda (\`Search Bar\`)
+
+* **Forma:** Píldora completa (\`border-radius: 9999px\`).
+* **Dimensiones:** Alto \`48px - 56px\`, ancho \`100%\`.
+* **Fondo:** \`Surface Container\` (\`${lightContainer}\`). Sin bordes pesados.
+* **Layout Interno:** \`Flexbox row\`, \`align-items: center\`, \`justify-content: space-between\`.
+  - *Izquierda:* Ícono de búsqueda (\`On Surface Variant\`) | Padding izquierdo: \`16px\`.
+  - *Centro:* Texto marcador (*placeholder*) desaturado.
+  - *Derecha:* Avatar de usuario circular (\`32px x 32px\`) o botón de filtro | Padding derecho: \`8px\`.
+
+### B. Tarjetas de Mensaje / Contenido (\`Cards\`)
+
+* **Contenedor:** \`border-radius: 20px - 24px\`, padding interno: \`16px - 20px\`.
+* **Estado Normal:** Fondo \`Surface Container\` (\`${lightContainer}\`) o \`Surface Container Lowest\` (\`${lightCard}\`).
+* **Estado Seleccionado (En foco / Activo):** Fondo \`Primary Container\` (\`${p.light.primaryContainer}\`). Todo el texto e iconos internos pasan a \`On Primary Container\` (\`${p.light.onPrimaryContainer}\`).
+* **Header de Tarjeta:**
+  - Avatar circular (\`40px\`) a la izquierda.
+  - Columna de información: Nombre/Título en negrita (\`16px\`), fecha/hora debajo (\`12px\`).
+  - Acción / Badge a la derecha.
+
+### C. Botones de Acción
+
+* **Primary Filled Button (\`md-filled-button\`):** Formato píldora (\`9999px\`), fondo \`Primary\`, texto \`On Primary\` en negrita.
+* **Secondary Outlined Button (\`md-outlined-button\`):** Formato píldora (\`9999px\`), fondo transparente, borde \`1px solid Outline\`, texto \`Primary\`.
+* **Text Button (\`md-text-button\`):** Sin fondo ni borde, texto \`Primary\` en mayúscula/semibold.
+
+### D. Barra de Navegación Inferior (\`Navigation Bar\`)
+
+* **Contenedor:** Alto \`80px\`, fondo \`Surface Container Low\` (\`${lightContainerLow}\`).
+* **Variante Stacked (Móvil Estándar):** Columna vertical centrada: Píldora indicadora arriba (\`64px x 32px\`, \`Secondary Container\`), texto abajo (\`12px\`).
+* **Variante Inline (Horizontal):** Píldora extendida que encierra el icono y texto en una fila horizontal con \`border-radius: 9999px\`.
+
+---
+
+## 5. Guía de Ejecución por Escenarios UI
+
+### Escenario 1: Feed / Lista Móvil (Mobile Single Pane)
+1. **Header:** \`Search Bar\` en formato píldora en la parte superior.
+2. **Body:** Lista de tarjetas (\`Cards\`) apiladas verticalmente con \`gap: 12px\`.
+3. **Acción Flotante:** \`FAB\` circular (\`56px x 56px\`, \`border-radius: 16px\`) posicionado a \`16px\` de la esquina inferior.
+4. **Footer:** \`Bottom Navigation Bar\` fija en la base de la pantalla.
+
+### Escenario 2: Diálogos y Formularios (Modales)
+1. **Confirmación Breve:** \`Basic Dialog\` (\`md-dialog\`) centrado en pantalla, \`border-radius: 28px\`, fondo \`Surface Container High\`, bloqueado con \`Scrim\` al 30%. Botones de acción en la esquina inferior derecha como \`Text Buttons\`.
+2. **Formulario Complejo (>3 campos):** \`Full-screen Dialog\` ocupando el 100% de la pantalla.
+   - Barra superior con botón "X" a la izquierda, título central y acción "Save" en texto \`Primary\` a la derecha.
+   - Inputs en formato \`Outlined Field\` con borde \`1px\`, \`border-radius: 8px\` y etiquetas flotantes (*Notched Outline*).
+
+### Escenario 3: Aplicación de Escritorio / Dashboard (Desktop 3-Pane)
+Configurar una cuadrícula \`Flexbox\` horizontal con tres áreas diferenciadas **sin bordes divisores verticales pesados**:
+$$\\text{Pantalla Completa} = \\text{Panel 1 (Drawer 240px)} + \\text{Panel 2 (Lista 360px)} + \\text{Panel 3 (Detalle flex-1)}$$
+1. **Panel 1 - Menú Lateral (\`240px\`):** Fondo \`Surface Container Low\` (\`${lightContainerLow}\`). Encabezado con \`Extended FAB\` ("Compose" o "Nueva Tarea") en píldora con fondo \`Primary Container\`.
+2. **Panel 2 - Lista / Kanban (\`360px\`):** Fondo \`Surface\` (\`${lightSurface}\`). Muestra la \`Search Bar\` e ítems de lista. La tarjeta activa cambia su fondo a \`Primary Container\` (\`${p.light.primaryContainer}\`).
+3. **Panel 3 - Lectura / Detalle (\`flex-1\`):** Fondo \`Surface Container Lowest\` (\`${lightCard}\`). Borde redondeado del contenedor de \`24px\`. Despliega el contenido completo del elemento seleccionado en el Panel 2.
+
+---
+
+## 6. Arquitectura Vanilla-Core (Reglas de Implementación)
+1. **Single Source of Truth (SSoT):** Todo el estado dinámico reside exclusivamente en \`store.js\`.
+2. **Surgical Rendering (Anti-Thrashing):** Prohibido sobreescribir con \`innerHTML\` formularios activos donde el usuario esté escribiendo.
+3. **Desacoplamiento Pub/Sub:** Los componentes publican cambios mediante \`setState()\`, y los renderers suscritos actualizan la UI quirúrgicamente.
 `;
 }
 
@@ -523,7 +671,7 @@ function openPreview(port = 4500) {
           console.log(` 🎨 Paleta:             ${selection.paletteName} (${selection.seed})`);
           console.log(` 🏛️  Modo Superficie:    ${selection.surfaceLabel}`);
           console.log(` ☀️ / 🌙 Tema Inicial:  ${selection.theme.toUpperCase()} MODE`);
-          console.log(` 📄 Archivo Generado:   DESIGN.md (Google Stitch Spec)`);
+          console.log(` 📄 Archivo Generado:   DESIGN.md (Guía Técnica & Tokens M3)`);
           console.log('═════════════════════════════════════════════════════════════\n');
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
