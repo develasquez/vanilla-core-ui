@@ -1,0 +1,9 @@
+{
+  "name": "lavender-tasks-app",
+  "version": "1.0.0",
+  "description": "Productivity & Tasks Kanban App with Lavender Breeze Palette & Neutral Gray Surfaces",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  }
+}

@@ -122,13 +122,23 @@ function openPreview(port = 4500) {
 
   server.listen(port, () => {
     const url = `http://localhost:${port}`;
-    console.log(`\n🎨 Palettes Visualizer running at: ${url}`);
+    console.log(`\n🎨 Galería Visual de Paletas M3 activa en: ${url}`);
+    console.log(`💡 Presiona Ctrl + C en la terminal para detener el servidor y liberar el puerto.\n`);
     
     // Auto open in default browser
     const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
     exec(`${startCmd} ${url}`, () => {});
   });
+
+  process.on('SIGINT', () => {
+    console.log('\n🛑 Cerrando servidor de previsualización...');
+    server.close(() => {
+      console.log('✅ Puerto liberado. ¡Hasta luego!\n');
+      process.exit(0);
+    });
+  });
 }
+
 
 module.exports = {
   generateHtmlPreview,

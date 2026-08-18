@@ -26,8 +26,9 @@ Usa este kit cuando construyas o inicialices una aplicación con el comando `/va
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const net = require('net');
 
-let currentPort = parseInt(process.env.PORT, 10) || 3000;
+let basePort = parseInt(process.env.PORT, 10) || 3000;
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -43,54 +44,65 @@ const MIME_TYPES = {
   '.woff2': 'font/woff2'
 };
 
-const server = http.createServer((req, res) => {
-  if (req.url === '/favicon.ico') {
-    res.writeHead(200, { 'Content-Type': 'image/x-icon' });
-    res.end();
-    return;
-  }
-
-  const cleanUrl = req.url.split('?')[0];
-  let filePath = path.join(__dirname, cleanUrl === '/' ? 'index.html' : cleanUrl);
-  const extname = String(path.extname(filePath)).toLowerCase();
-  const contentType = MIME_TYPES[extname] || 'application/octet-stream';
-
-  fs.readFile(filePath, (error, content) => {
-    if (error) {
-      if (extname === '.css') {
-        res.writeHead(200, { 'Content-Type': 'text/css' });
-        res.end('/* optional css */', 'utf-8');
-      } else if (error.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('<h1>404 Not Found</h1>', 'utf-8');
-      } else {
-        res.writeHead(500);
-        res.end(`Server Error: ${error.code}`);
-      }
-    } else {
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content, 'utf-8');
-    }
-  });
-});
-
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.warn(`⚠️ Puerto ${currentPort} en uso, intentando con http://localhost:${currentPort + 1}...`);
-    currentPort += 1;
-    startServer(currentPort);
-  } else {
-    console.error(`Server error:`, err);
-  }
-});
-
-function startServer(port) {
-  server.listen(port, () => {
-    console.log(`🚀 Material 3 Vanilla-Core server running at http://localhost:${port}`);
+function checkPortAvailable(port) {
+  return new Promise((resolve) => {
+    const tester = net.createServer()
+      .once('error', () => resolve(false))
+      .once('listening', () => {
+        tester.once('close', () => resolve(true)).close();
+      })
+      .listen(port);
   });
 }
 
-startServer(currentPort);
+async function findAvailablePort(startPort) {
+  let port = startPort;
+  while (!(await checkPortAvailable(port))) {
+    port++;
+  }
+  return port;
+}
+
+async function start() {
+  const port = await findAvailablePort(basePort);
+
+  const server = http.createServer((req, res) => {
+    if (req.url === '/favicon.ico') {
+      res.writeHead(200, { 'Content-Type': 'image/x-icon' });
+      res.end();
+      return;
+    }
+
+    const cleanUrl = req.url.split('?')[0];
+    let filePath = path.join(__dirname, cleanUrl === '/' ? 'index.html' : cleanUrl);
+    const extname = String(path.extname(filePath)).toLowerCase();
+    const contentType = MIME_TYPES[extname] || 'application/octet-stream';
+
+    fs.readFile(filePath, (error, content) => {
+      if (error) {
+        if (extname === '.css') {
+          res.writeHead(200, { 'Content-Type': 'text/css' });
+          res.end('/* optional css */', 'utf-8');
+        } else if (error.code === 'ENOENT') {
+          res.writeHead(404, { 'Content-Type': 'text/html' });
+          res.end('<h1>404 Not Found</h1>', 'utf-8');
+        } else {
+          res.writeHead(500);
+          res.end(`Server Error: ${error.code}`);
+        }
+      } else {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content, 'utf-8');
+      }
+    });
+  });
+
+  server.listen(port, () => {
+    console.log(`🚀 Vanilla-Core server running at: http://localhost:${port}`);
+  });
+}
+
+start();
 ```
 
 ---

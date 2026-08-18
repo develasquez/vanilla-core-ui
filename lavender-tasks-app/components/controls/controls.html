@@ -1,0 +1,19 @@
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+  <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="filter-chips-container">
+    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] transition-colors" data-filter="all">Todas (6)</button>
+    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface-variant)] hover:bg-[var(--md-sys-color-surface-container-high)] transition-colors" data-filter="todo">Por Hacer (2)</button>
+    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface-variant)] hover:bg-[var(--md-sys-color-surface-container-high)] transition-colors" data-filter="in-progress">En Progreso (2)</button>
+    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--md-sys-color-surface-container)] text-[var(--md-sys-color-on-surface-variant)] hover:bg-[var(--md-sys-color-surface-container-high)] transition-colors" data-filter="done">Completadas (2)</button>
+  </div>
+
+  <div class="inline-flex rounded-full bg-[var(--md-sys-color-surface-container)] p-1 gap-1 self-start sm:self-auto">
+    <button class="view-btn px-3 py-1 rounded-full text-xs font-semibold bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] transition-colors" data-tab="kanban">
+      <span class="material-symbols-outlined text-[16px] align-middle mr-1">view_kanban</span>
+      Tablero
+    </button>
+    <button class="view-btn px-3 py-1 rounded-full text-xs font-semibold text-[var(--md-sys-color-on-surface-variant)] transition-colors" data-tab="list">
+      <span class="material-symbols-outlined text-[16px] align-middle mr-1">format_list_bulleted</span>
+      Lista
+    </button>
+  </div>
+</div>

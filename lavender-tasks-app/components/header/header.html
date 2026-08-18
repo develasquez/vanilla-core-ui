@@ -1,0 +1,33 @@
+<div class="flex items-center justify-between gap-4 max-w-7xl mx-auto w-full">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-2xl bg-[var(--md-sys-color-primary)] text-[var(--md-sys-color-on-primary)] flex items-center justify-center font-bold text-lg shadow-sm">
+      <span class="material-symbols-outlined text-[22px]">check_circle</span>
+    </div>
+    <div>
+      <div class="flex items-center gap-2">
+        <h1 class="text-base lg:text-lg font-bold text-[var(--md-sys-color-on-surface)] leading-none">Lavender Tasks Suite</h1>
+        <span class="m3-badge-neutral text-[10px] uppercase tracking-wider hidden sm:inline-flex">Sprint 42</span>
+      </div>
+      <p class="text-xs text-[var(--md-sys-color-on-surface-variant)] mt-0.5">M3 Scheme: <strong class="text-[var(--md-sys-color-primary)]">Lavender Breeze</strong> · Fondo: <strong>Gris Neutro</strong></p>
+    </div>
+  </div>
+
+  <div class="flex-1 max-w-md hidden md:block">
+    <div class="m3-search-bar">
+      <span class="material-symbols-outlined text-[20px] text-[var(--md-sys-color-on-surface-variant)]">search</span>
+      <input id="header-search-input" type="text" placeholder="Buscar tareas, tags o responsables..." />
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 px-2.5 py-1 rounded-full bg-[var(--md-sys-color-surface-container)]">
+      <span class="material-symbols-outlined text-[18px] text-[var(--md-sys-color-on-surface-variant)]">dark_mode</span>
+      <md-switch id="header-theme-toggle" aria-label="Cambiar tema oscuro"></md-switch>
+    </div>
+
+    <md-filled-button id="header-btn-new-task">
+      <span class="material-symbols-outlined" slot="icon">add</span>
+      Nueva Tarea
+    </md-filled-button>
+  </div>
+</div>
