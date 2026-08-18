@@ -54,6 +54,40 @@ Uses the official **Material Web Components (M3)** with the **Material You Desig
 
 ---
 
+## 🎨 Protocolo Obligatorio de Selección de Paleta y Superficie (Single-Theme Rule)
+
+Antes de generar el código de cualquier interfaz nueva o modificación visual mayor, **el agente SIEMPRE DEBE consultar y acordar con el usuario** dos decisiones de diseño clave:
+
+### 1. Selección de Paleta Semántica (Únicamente 1 por proyecto)
+El agente DEBE implementar **estrictamente 1 sola paleta** de las 10 del catálogo. Queda terminantemente prohibido mezclar tokens o inventar colores fuera de la paleta elegida:
+- 🌿 **Forest Sage** (`#426B29` - Salud, meditación, sostenibilidad)
+- 🌿 **Olive Slate** (`#5A641F` - Agricultura, finanzas éticas, lectura)
+- 🔴 **Crimson Quartz** (`#BB1834` - Fitness, alertas, e-commerce, noticias)
+- 🔴 **Terracotta Dusk** (`#A24244` - Redes sociales, eventos, interiorismo)
+- 💜 **Lavender Breeze** (`#6750A4` - Productividad, email, dashboards SaaS)
+- 💜 **Orchid Velvet** (`#8E4A8D` - Apps creativas, bienestar, belleza)
+- 🌊 **Oceanic Slate** (`#2B638B` - Analítica de datos, fintech, corporativo)
+- 🌊 **Aqua Frost** (`#006874` - Telemedicina, clima, monitorización técnica)
+- 🍯 **Golden Amber** (`#7A5900` - Notas, recetas, interfaces artesanales)
+- 🍯 **Desert Bloom** (`#85511A` - Gastronomía, viajes, artesanía siena)
+
+> 💡 **Previsualización Nativa CLI:** El usuario o el agente pueden inspeccionar cualquier paleta en consola en Truecolor 24-bits ejecutando:
+> ```bash
+> npx vanilla-core-ui --palettes [nombre-o-id]
+> # Ejemplos:
+> npx vanilla-core-ui --palettes              # Lista general de las 10 paletas
+> npx vanilla-core-ui --palettes forest-sage  # Detalle Light/Dark + Superficies
+> ```
+
+### 2. Selección del Modo de Fondo / Superficie
+El agente DEBE validar qué tipo de fondo prefiere el usuario:
+- **Opción A: Color Tonal Propio (Default M3):** El fondo `Surface` adopta el matiz tonal sutil de la paleta (ej. `#F3F6E8` para Forest Sage).
+- **Opción B: Blanco Puro:** El fondo `Surface` se establece en `#FFFFFF` y los contenedores en `#F8F9FA`.
+- **Opción C: Escala de Grises / Neutro:** El fondo `Surface` se establece en gris neutro (`#F5F5F7` / `#EEEEF0`).
+
+
+---
+
 ## 📂 Mandatory Directory Structure
 
 All new projects MUST be generated with this structure. You must constantly evaluate file size. **If a file exceeds ~150 lines or handles multiple distinct responsibilities, you MUST propose and implement splitting it.**

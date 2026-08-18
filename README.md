@@ -91,10 +91,23 @@ npx vanilla-core-ui --global
 
 This copies the skill to `~/.gemini/config/skills/vanilla-core-ui/`.
 
-### 3. Check CLI Options
+### 3. Native CLI Truecolor Palette Visualizer (24-bit ANSI)
+Preview all 10 Material Design 3 semantic color schemes directly in your terminal (macOS, Linux, Windows Terminal):
+
+```bash
+# View summary table of all 10 schemes
+npx vanilla-core-ui --palettes
+
+# Inspect a specific scheme with Light / Dark Mode and 3 Surface Modes
+npx vanilla-core-ui --palettes forest-sage
+npx vanilla-core-ui --palettes oceanic-slate
+```
+
+### 4. Check CLI Options
 ```bash
 npx vanilla-core-ui --help
 ```
+
 
 ---
 

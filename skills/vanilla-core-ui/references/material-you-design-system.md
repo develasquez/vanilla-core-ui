@@ -25,9 +25,29 @@ Para aplicar cualquier esquema con éxito en cualquier layout (móvil, tablet o 
    - `Estado Inactivo/Neutro`: Usa `Surface Container` (el tono de la tarjeta base).
    - `Estado Seleccionado/En Foco`: El fondo de la tarjeta/ítem debe cambiar a `Primary Container`. Todo el texto/icono interno debe cambiar a `On Primary Container`.
 
+4. **Regla de Paleta Única (Single-Theme Rule):**
+   - Toda aplicación debe implementar **estrictamente 1 sola paleta** de las 10 del catálogo. El agente SIEMPRE debe consultar al usuario cuál paleta desea implementar antes de codificar. Queda prohibido mezclar tokens entre esquemas distintos.
+
 ---
 
-### B. Catálogo de los 10 Esquemas de Color Semánticos (5 Familias Tonales)
+### B. Los 3 Modos de Superficie / Fondo (Surface Modes)
+
+El agente debe consultar al usuario qué tratamiento de fondo prefiere para la interfaz:
+
+1. **Modo A: Color Tonal Propio (Default M3):**
+   - El fondo `Surface` adopta el matiz tonal sutil propio de la paleta (por ejemplo `#F3F6E8` en Forest Sage o `#F4F7FA` en Oceanic Slate). Proporciona la experiencia inmersiva y orgánica nativa de Material You.
+
+2. **Modo B: Blanco Puro:**
+   - El fondo `Surface` se fuerza a `#FFFFFF` y los `Surface Container` a un gris neutro muy claro (`#F8F9FA` / `#F1F3F5`). Ideal para interfaces de máxima claridad y contraste editorial.
+
+3. **Modo C: Escala de Grises / Neutro:**
+   - El fondo `Surface` se fuerza a un gris neutro (`#F5F5F7` / `#EEEEF0`) y los `Surface Container` a `#FFFFFF` o `#E5E5EA`. Ideal para interfaces corporativas sobrias y minimalistas.
+
+
+---
+
+### C. Catálogo de los 10 Esquemas de Color Semánticos (5 Familias Tonales)
+
 
 #### 🌿 Familia 1: Verdes y Oliva (Naturaleza / Salud / Sostenibilidad)
 

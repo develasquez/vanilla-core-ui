@@ -7,22 +7,36 @@ const os = require('os');
 const args = process.argv.slice(2);
 const isGlobal = args.includes('--global') || args.includes('-g');
 const isHelp = args.includes('--help') || args.includes('-h');
+const isPalettes = args.includes('--palettes') || args.includes('-p');
+
+if (isPalettes) {
+  const { showPalette, showAllPalettesSummary } = require('./palettes.js');
+  const paletteArg = args.find(a => !a.startsWith('-'));
+  if (paletteArg) {
+    showPalette(paletteArg);
+  } else {
+    showAllPalettesSummary();
+  }
+  process.exit(0);
+}
 
 if (isHelp) {
   console.log(`
 🚀 Vanilla-Core UI Skill Installer (vanilla-core-ui)
 
 Usage:
-  npx vanilla-core-ui           Install skill into local workspace (.agents/skills/vanilla-core-ui)
-  npx vanilla-core-ui --global  Install skill globally (~/.gemini/config/skills/vanilla-core-ui)
-  npx vanilla-core-ui --help    Show help message
+  npx vanilla-core-ui             Install skill into local workspace (.agents/skills/vanilla-core-ui)
+  npx vanilla-core-ui --global    Install skill globally (~/.gemini/config/skills/vanilla-core-ui)
+  npx vanilla-core-ui --palettes  Show Truecolor 24-bit terminal preview of the 10 M3 color palettes
+  npx vanilla-core-ui --help      Show help message
 
 AI Agent Slash Commands supported:
   /vanilla-core-ui          Standard Vanilla-Core Architecture (Tailwind + SSoT + PubSub)
-  /vanilla-core-ui material Vanilla-Core Architecture with Material Components Web (MDC Web Catalog)
+  /vanilla-core-ui material Vanilla-Core Architecture with Material Web (M3 Semantic Color Schemes)
 `);
   process.exit(0);
 }
+
 
 const sourceDir = path.join(__dirname, '..', 'skills', 'vanilla-core-ui');
 
