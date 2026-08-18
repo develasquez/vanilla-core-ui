@@ -50,26 +50,27 @@ El agente DEBE implementar **estrictamente 1 sola paleta** de las 10 del catálo
 
 ---
 
-### 🚨 PROTOCOLO OBLIGATORIO DE SELECCIÓN VISUAL:
+### 🤖 Flujo Interactivo Automatizado y Generación de `DESIGN.md`:
 
-> [!IMPORTANT]
-> **PROHIBICIÓN ESTRICTA DE PREGUNTAS DE TEXTO (`ask_question`):**
-> **NUNCA** uses la herramienta `ask_question` para preguntar qué paleta o qué fondo usar. Es imposible evaluar armonías de color con listas de texto en la consola.
+Cuando el usuario solicita crear o rediseñar una interfaz (ej. *"crea una app de...", "diseña un dashboard..."*):
 
-**PASO A PASO EXACTO QUE DEBES EJECUTAR:**
+1. **Lanzamiento Automático del Selector Visual:**
+   - El agente ejecuta directamente con `run_command`:
+     ```bash
+     npx vanilla-core-ui --preview
+     ```
+   - Esto abre instantáneamente la galería interactiva en el navegador del usuario con los 10 esquemas M3 reales, botones, badges WCAG AAA y alternadores de modo claro/oscuro y superficie.
 
-1. **Lanza el Selector Visual en el Navegador:**
-   Ejecuta inmediatamente con `run_command`:
-   ```bash
-   npx vanilla-core-ui --preview
-   ```
-   *(El comando abrirá automáticamente el navegador con la galería interactiva, donde el usuario puede alternar Claro/Oscuro, ver los 3 modos de superficie y hacer clic en `[✨ Seleccionar esta Paleta]`)*.
+2. **Selección en 1 Clic & Generación de `DESIGN.md` (Google Stitch Standard):**
+   - El usuario explora y presiona el botón **`[✨ Generar DESIGN.md con esta Paleta]`** en el esquema y modo de fondo que prefiera.
+   - El navegador transmite la selección al servidor local, el cual:
+     - Genera automáticamente el archivo **`DESIGN.md`** en la raíz del proyecto, apegado al estándar oficial de especificación de diseño ([Google Stitch Design-MD Spec](https://stitch.withgoogle.com/docs/design-md/specification/)), incluyendo YAML Front Matter con los tokens y Markdown explicativo de componentes y accesibilidad.
+     - Cierra el servidor y libera el puerto automáticamente.
 
-2. **Espera la Selección del Usuario:**
-   Cuando el usuario hace clic en el botón de su paleta elegida en el navegador, el servidor web guarda la elección en `.vanilla-core-selection.json`, libera el puerto y el comando termina automáticamente.
+3. **Lectura de `DESIGN.md` y Construcción:**
+   - El agente lee el archivo `DESIGN.md` generado en la raíz del proyecto.
+   - Procede a implementar el proyecto aplicando **estrictamente esa única paleta semántica, contrastes y modo de superficie definidos en `DESIGN.md`**.
 
-3. **Lee la Elección y Construye:**
-   Lee el archivo `.vanilla-core-selection.json` con `view_file` e implementa la aplicación con **esa única paleta semántica y el modo de superficie seleccionados**.
 
 ---
 

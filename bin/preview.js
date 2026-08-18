@@ -4,6 +4,142 @@ const path = require('path');
 const { exec } = require('child_process');
 const { PALETTES } = require('./palettes.js');
 
+function generateDesignMd(selection) {
+  const p = PALETTES.find(item => item.id === selection.paletteId) || PALETTES[0];
+  const isDark = selection.theme === 'dark';
+  const surfaceMode = selection.surfaceMode || 'tonal';
+  
+  let lightSurface = p.light.surface;
+  let lightCard = '#FFFFFF';
+  let darkSurface = p.dark.surface;
+  let darkCard = '#1C1B1F';
+
+  if (surfaceMode === 'white') {
+    lightSurface = '#FFFFFF';
+    lightCard = '#F8F9FA';
+    darkSurface = '#0D0E11';
+    darkCard = '#181A1D';
+  } else if (surfaceMode === 'gray') {
+    lightSurface = '#F5F5F7';
+    lightCard = '#FFFFFF';
+    darkSurface = '#121316';
+    darkCard = '#1E2023';
+  }
+
+  return `---
+name: "${p.name} — Vanilla-Core M3 Design System"
+version: "1.0.0"
+spec: "https://stitch.withgoogle.com/docs/design-md/specification/"
+theme:
+  default: "${selection.theme || 'light'}"
+  palette: "${p.id}"
+  surfaceMode: "${surfaceMode}"
+colors:
+  seed: "${p.seed}"
+  family: "${p.family}"
+  light:
+    primary: "${p.light.primary}"
+    onPrimary: "${p.light.onPrimary}"
+    primaryContainer: "${p.light.primaryContainer}"
+    onPrimaryContainer: "${p.light.onPrimaryContainer}"
+    secondaryContainer: "${p.light.secondaryContainer}"
+    onSecondaryContainer: "${p.light.onSecondaryContainer}"
+    surface: "${lightSurface}"
+    surfaceContainerLowest: "${lightCard}"
+    surfaceContainer: "${surfaceMode === 'white' ? '#F1F3F5' : surfaceMode === 'gray' ? '#EEEEF0' : p.light.surfaceContainer}"
+    onSurface: "${p.light.onSurface}"
+    onSurfaceVariant: "${p.light.onSurfaceVariant}"
+    outline: "${p.light.outline}"
+    outlineVariant: "${p.light.outlineVariant}"
+    badgeSuccessBg: "${p.light.badgeSuccessBg}"
+    badgeSuccessText: "${p.light.badgeSuccessText}"
+    badgeErrorBg: "${p.light.badgeErrorBg}"
+    badgeErrorText: "${p.light.badgeErrorText}"
+    badgeWarningBg: "${p.light.badgeWarningBg}"
+    badgeWarningText: "${p.light.badgeWarningText}"
+  dark:
+    primary: "${p.dark.primary}"
+    onPrimary: "${p.dark.onPrimary}"
+    primaryContainer: "${p.dark.primaryContainer}"
+    onPrimaryContainer: "${p.dark.onPrimaryContainer}"
+    secondaryContainer: "${p.dark.secondaryContainer}"
+    onSecondaryContainer: "${p.dark.onSecondaryContainer}"
+    surface: "${darkSurface}"
+    surfaceContainerLowest: "${darkCard}"
+    surfaceContainer: "${surfaceMode === 'white' ? '#181A1D' : surfaceMode === 'gray' ? '#1E2023' : p.dark.surfaceContainer}"
+    onSurface: "${p.dark.onSurface}"
+    onSurfaceVariant: "${p.dark.onSurfaceVariant}"
+    outline: "${p.dark.outline}"
+    outlineVariant: "${p.dark.outlineVariant}"
+    badgeSuccessBg: "${p.dark.badgeSuccessBg}"
+    badgeSuccessText: "${p.dark.badgeSuccessText}"
+    badgeErrorBg: "${p.dark.badgeErrorBg}"
+    badgeErrorText: "${p.dark.badgeErrorText}"
+    badgeWarningBg: "${p.dark.badgeWarningBg}"
+    badgeWarningText: "${p.dark.badgeWarningText}"
+typography:
+  fontFamily: "Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  weights:
+    regular: 400
+    medium: 500
+    bold: 700
+  scale:
+    h1: "1.75rem"
+    h2: "1.25rem"
+    h3: "1rem"
+    body: "0.875rem"
+    caption: "0.75rem"
+    badge: "0.6875rem"
+spacing:
+  xs: "4px"
+  sm: "8px"
+  md: "16px"
+  lg: "24px"
+  xl: "32px"
+rounded:
+  extraSmall: "4px"
+  small: "8px"
+  medium: "12px"
+  large: "16px"
+  extraLarge: "24px"
+  full: "9999px"
+---
+
+# ${p.name} — Design Specification
+
+## 1. Visual Theme & Atmosphere (The "Why")
+* **Design Philosophy:** Clean, accessible Material 3 / Material You architecture combined with Vanilla-Core state decoupling.
+* **Atmosphere:** ${p.desc}
+* **Surface Strategy:** \`${selection.surfaceLabel || surfaceMode}\`.
+* **Contrast Compliance:** Certified **WCAG AAA** (contrast ratio $\\ge 7:1$) on all primary interactive badges and core typography.
+
+## 2. Color Palette & Semantic Usage
+* **Primary (\`${isDark ? p.dark.primary : p.light.primary}\`):** Used exclusively for key interactive drivers, primary buttons (\`md-filled-button\`), active indicator states, and progress fills.
+* **Primary Container (\`${isDark ? p.dark.primaryContainer : p.light.primaryContainer}\`):** Tonal accent for active list selections, active navigation indicator pills, and featured cards.
+* **Surface (\`${isDark ? darkSurface : lightSurface}\`):** Canvas background adhering to the selected surface mode.
+* **Surface Container Lowest (\`${isDark ? darkCard : lightCard}\`):** Elevated cards, kanban boards, and content modules.
+
+## 3. Typography & Micro-copy Rules
+* **Font Family:** \`Roboto, system-ui, sans-serif\` with clear visual hierarchy.
+* **Tracking & Kerning:** Tight tracking on headings (\`tracking-tight\`), clean readability on body copy (\`leading-relaxed\`).
+* **Semantic Hierarchy:** Single \`<h1>\` per view, \`<h3>\` for module headers, \`caption\` for metadata and timestamps.
+
+## 4. Component-Specific Implementation
+* **Buttons (\`md-filled-button\`, \`md-text-button\`, \`md-outlined-button\`):** Full pill radius (\`--md-shape-corner-full\`), interactive ripple, distinct focus rings.
+* **Status Badges (WCAG AAA):**
+  - **Success / Positive:** \`bg: ${isDark ? p.dark.badgeSuccessBg : p.light.badgeSuccessBg}\`, \`text: ${isDark ? p.dark.badgeSuccessText : p.light.badgeSuccessText}\`
+  - **Error / Critical:** \`bg: ${isDark ? p.dark.badgeErrorBg : p.light.badgeErrorBg}\`, \`text: ${isDark ? p.dark.badgeErrorText : p.light.badgeErrorText}\`
+  - **Warning / Alert:** \`bg: ${isDark ? p.dark.badgeWarningBg : p.light.badgeWarningBg}\`, \`text: ${isDark ? p.dark.badgeWarningText : p.light.badgeWarningText}\`
+* **Dialogs & Modals (\`md-dialog\`):** Modal presentation with backdrop scrim, centered actions, and Focus Guard.
+* **Inputs & Form Controls (\`md-outlined-text-field\`):** Outlined styling with floating labels and surgical state binding.
+
+## 5. Layout & Architectural Principles (Vanilla-Core)
+* **Single Source of Truth (SSoT):** Entire dynamic state lives in \`store.js\`.
+* **Surgical Rendering:** Zero destructive \`innerHTML\` re-renders on active form inputs.
+* **Responsive Breakpoints:** Fluid container scaling (\`max-w-7xl\`), collapsible sidebars with width/flex-basis animation, and bottom navigation bar on mobile viewports.
+`;
+}
+
 function generateHtmlPreview() {
   const palettesJson = JSON.stringify(PALETTES);
 
@@ -59,7 +195,7 @@ function generateHtmlPreview() {
           </div>
           <div>
             <h1 class="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Selector Interactivo de Paletas M3</h1>
-            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Elige tu combinación de color y superficie directamente con un clic</p>
+            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Elige tu combinación y genera automáticamente el archivo <strong class="text-indigo-600 dark:text-indigo-400 font-mono">DESIGN.md</strong></p>
           </div>
         </div>
       </div>
@@ -244,8 +380,8 @@ function generateHtmlPreview() {
                       data-palette-id="\${p.id}"
                       data-palette-name="\${p.name}"
                       data-seed="\${p.seed}">
-                <span class="material-symbols-outlined text-[16px]">check</span>
-                <span>Seleccionar esta Paleta</span>
+                <span class="material-symbols-outlined text-[16px]">description</span>
+                <span>Generar DESIGN.md con esta Paleta</span>
               </button>
             </div>
 
@@ -281,10 +417,10 @@ function generateHtmlPreview() {
                 <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 shadow-lg">
                   <span class="material-symbols-outlined text-[36px]">check_circle</span>
                 </div>
-                <h1 class="text-2xl font-bold mb-2">¡Paleta Seleccionada con Éxito!</h1>
-                <div class="bg-white dark:bg-[#1E2023] border border-gray-200 dark:border-gray-800 rounded-2xl p-4 my-4 max-w-md w-full text-left space-y-2 shadow-sm text-xs">
+                <h1 class="text-2xl font-bold mb-2">¡DESIGN.md Generado con Éxito!</h1>
+                <div class="bg-white dark:bg-[#1E2023] border border-gray-200 dark:border-gray-800 rounded-2xl p-5 my-4 max-w-md w-full text-left space-y-2.5 shadow-sm text-xs">
                   <div class="flex justify-between">
-                    <span class="opacity-60">Esquema:</span>
+                    <span class="opacity-60">Esquema Semántico:</span>
                     <strong class="font-bold text-sm">\${paletteName} (\${seed})</strong>
                   </div>
                   <div class="flex justify-between">
@@ -295,8 +431,12 @@ function generateHtmlPreview() {
                     <span class="opacity-60">Tema por defecto:</span>
                     <strong class="capitalize">\${currentTheme} Mode</strong>
                   </div>
+                  <div class="flex justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
+                    <span class="opacity-60">Archivo de Diseño:</span>
+                    <strong class="font-mono text-emerald-600 dark:text-emerald-400">DESIGN.md (Google Stitch Spec)</strong>
+                  </div>
                 </div>
-                <p class="text-xs text-gray-500 max-w-sm">La selección ha sido transferida a la terminal y al agente de IA. El servidor se ha detenido y el puerto ha sido liberado.</p>
+                <p class="text-xs text-gray-500 max-w-sm">El archivo DESIGN.md fue creado en la raíz del proyecto. El servidor se ha cerrado y el agente continuará la construcción.</p>
               </div>
             \`;
           } catch (e) {
@@ -373,25 +513,26 @@ function openPreview(port = 4500) {
         try {
           const selection = JSON.parse(body);
           
-          // Save selection to local temp file for agent/tool consumption
-          const selectionPath = path.join(process.cwd(), '.vanilla-core-selection.json');
-          fs.writeFileSync(selectionPath, JSON.stringify(selection, null, 2), 'utf-8');
+          // Generate DESIGN.md compliant with Google Stitch specification
+          const designMdContent = generateDesignMd(selection);
+          const designMdPath = path.join(process.cwd(), 'DESIGN.md');
+          fs.writeFileSync(designMdPath, designMdContent, 'utf-8');
 
           console.log('\n✨ [SELECCIÓN RECIBIDA DESDE EL NAVEGADOR]');
           console.log('═════════════════════════════════════════════════════════════');
           console.log(` 🎨 Paleta:             ${selection.paletteName} (${selection.seed})`);
           console.log(` 🏛️  Modo Superficie:    ${selection.surfaceLabel}`);
           console.log(` ☀️ / 🌙 Tema Inicial:  ${selection.theme.toUpperCase()} MODE`);
-          console.log(` 💾 Guardado en:        .vanilla-core-selection.json`);
+          console.log(` 📄 Archivo Generado:   DESIGN.md (Google Stitch Spec)`);
           console.log('═════════════════════════════════════════════════════════════\n');
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ success: true }));
+          res.end(JSON.stringify({ success: true, file: 'DESIGN.md' }));
 
           // Gracefully close server
           setTimeout(() => {
             server.close(() => {
-              console.log('🛑 Servidor cerrado y puerto liberado automáticamente tras la selección.');
+              console.log('🛑 Servidor cerrado y puerto liberado automáticamente tras generar DESIGN.md.');
               process.exit(0);
             });
           }, 600);
@@ -433,7 +574,7 @@ function openPreview(port = 4500) {
   server.listen(port, () => {
     const url = `http://localhost:${port}`;
     console.log(`\n🎨 Selector Visual de Paletas M3 activo en: ${url}`);
-    console.log(`💡 Puedes seleccionar tu paleta favorita con un clic en la página web.`);
+    console.log(`💡 Puedes seleccionar tu paleta favorita con un clic para generar tu DESIGN.md.`);
     console.log(`💡 Para detener sin seleccionar presiona Ctrl + C o la tecla 'q'.\n`);
     
     const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
@@ -470,6 +611,7 @@ function openPreview(port = 4500) {
 
 module.exports = {
   generateHtmlPreview,
+  generateDesignMd,
   openPreview
 };
 
