@@ -40,6 +40,29 @@ Every application built or managed by `vanilla-core-ui` strictly adheres to 7 fo
 
 ---
 
+## 🎨 Design Modes & AI Commands
+
+Vanilla-Core supports two built-in development modes:
+
+### 1. Standard Mode (`/vanilla-core-ui`)
+TailwindCSS + Semantic HTML5 + Vanilla JS Pub/Sub architecture.
+
+### 2. Material You / Material Design 3 Mode (`/vanilla-core-ui material`)
+Integrates the complete [Material Web Components (M3)](https://github.com/material-components/material-web) and the **Material You Design System Architecture** directly into Vanilla-Core.
+* **100% Offline Vendored**: Includes offline bundled JavaScript and Material Symbols Outlined font files inside `skills/vanilla-core-ui/vendor/material-web/` for complete offline independence.
+* **Dynamic Color Tokens (Core Palette)**: Semantic role mapping for `Primary`, `Primary Container`, `Secondary Container`, `Surface`, `Surface Container Low/Lowest/High`, `On Surface`, and seed palettes (Purple, Green, Terracotta).
+* **Flat Depth Architecture**: Zero projected `box-shadow` on regular cards. Elevation is driven purely by surface tonal luminance.
+* **WCAG AAA High-Contrast Contract**: Certified minimum 7:1 contrast ratio on all badges, pills, and interactive states (`.m3-badge-success`, `.m3-badge-error`, `.m3-badge-warning`).
+* **Adaptive Breakpoints & Layouts**:
+  - **Desktop (`≥ 840dp`)**: Desktop 3-Pane Layout (`Drawer 240px` + `Feed/List 360px` + `Detail flex-1`).
+  - **Mobile (`< 600dp`)**: Single Pane drill-down pattern with back button, Bottom Navigation Bar (`80px`), and autonomous floating circular FAB.
+* **Documentation References**:
+  - [Material You Design System Specification](skills/vanilla-core-ui/references/material-you-design-system.md)
+  - [Material Web Catalog Reference](skills/vanilla-core-ui/references/material-catalog.md)
+  - [Material Boilerplate Reference](skills/vanilla-core-ui/references/material-boilerplate.md)
+
+---
+
 ## 📦 Installation & Quick Start
 
 You can install this skill into your local project workspace or globally across your machine using `npx`:

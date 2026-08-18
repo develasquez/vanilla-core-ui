@@ -16,6 +16,10 @@ Usage:
   npx vanilla-core-ui           Install skill into local workspace (.agents/skills/vanilla-core-ui)
   npx vanilla-core-ui --global  Install skill globally (~/.gemini/config/skills/vanilla-core-ui)
   npx vanilla-core-ui --help    Show help message
+
+AI Agent Slash Commands supported:
+  /vanilla-core-ui          Standard Vanilla-Core Architecture (Tailwind + SSoT + PubSub)
+  /vanilla-core-ui material Vanilla-Core Architecture with Material Components Web (MDC Web Catalog)
 `);
   process.exit(0);
 }
@@ -54,7 +58,7 @@ try {
   console.log(`📦 Installing Vanilla-Core UI skill to:\n   ${targetDir}\n`);
   copyRecursive(sourceDir, targetDir);
   console.log('✅ Vanilla-Core UI skill installed successfully!');
-  console.log('🤖 Your AI Agent can now discover and use "vanilla-core-ui".');
+  console.log('🤖 Your AI Agent can now discover and use "vanilla-core-ui" and "/vanilla-core-ui material".');
 } catch (err) {
   console.error('❌ Error installing Vanilla-Core Skill:', err.message);
   process.exit(1);

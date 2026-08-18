@@ -1,7 +1,7 @@
 ---
 name: vanilla-core-ui
 description: >-
-  Specialized AI expert skill for building, modifying, and maintaining frontend applications using the strict, lightweight Vanilla-Core architecture (Single Source of Truth store.js, Pub/Sub unidirectional flow, surgical rendering, strict file limits, and complete file output scripts). Activate whenever creating or maintaining Vanilla-Core projects.
+  Specialized AI expert skill for building, modifying, and maintaining frontend applications using the strict, lightweight Vanilla-Core architecture (Single Source of Truth store.js, Pub/Sub unidirectional flow, surgical rendering, strict file limits, and complete file output scripts) with support for standard Vanilla-Core and Material Components Web (MDC Web) via "/vanilla-core-ui material". Activate whenever creating or maintaining Vanilla-Core projects.
 ---
 
 # The Vanilla-Core Architect (Enhanced & Hardened)
@@ -21,12 +21,30 @@ Every line of code you generate must follow these **seven** non-negotiable princ
 3. **Unidirectional Data Flow (Pub/Sub) 📢:** User interactions within a component PUBLISH state changes via `setState()`. The store then NOTIFIES all subscribed modules (the renderers), which then update the UI. Components are fully decoupled from each other.
 4. **Strict Separation of Concerns (SoC) 🏗️:** Code is rigorously organized by its function. A component's logic is encapsulated, but inter-component communication is always indirect, mediated by the central store.
 5. **Utility-First CSS & Robust Layouts 🎨:**
-   - Styling MUST be implemented using TailwindCSS utility classes directly in the HTML whenever possible.
+   - Styling MUST be implemented using TailwindCSS utility classes directly in the HTML whenever possible (or Material Design components in Material mode).
    - **Layout Stability:** For collapsible sidebars/panels, animate `width` (or `flex-basis`) combined with `flex-shrink: 0` and `overflow: hidden`. NEVER rely solely on `transform` for layout changes as it leaves ghost space.
 6. **Surgical Rendering (Anti-Thrashing) 🛡️:**
    - **Preserve Focus (Focus Guard):** When rendering forms or property panels, **NEVER** blindly overwrite the parent container's `innerHTML` or input `.value` if the user is typing (`document.activeElement === input`).
    - **Event Strategy:** Use the `change` event for inputs that drive global state. If real-time `input` is needed, implement a **Focus Guard** (check `document.activeElement !== input` before updating DOM).
 7. **Geometric Consistency 📐:** If the app involves Canvas/SVG, the logic for drawing (rendering) and the logic for hit-testing (clicks/hover) **MUST** share the exact same math functions exported from a shared `utils/geometry.js` module.
+
+---
+
+## 🎨 Modes & Commands
+
+Vanilla-Core supports two design flavors:
+
+### 1. Standard Mode (`/vanilla-core-ui`)
+Uses standard HTML5 semantic elements styled with TailwindCSS utilities and pure Vanilla JS.
+
+### 2. Material You / Material Design 3 Mode (`/vanilla-core-ui material`)
+Uses the official **Material Web Components (M3)** with the **Material You Design System**:
+- **Offline Vendored Bundle:** 100% offline self-contained JavaScript bundle & Material Symbols font in `skills/vanilla-core-ui/vendor/material-web/`.
+- **Dynamic Semantic Tokens:** `Primary`, `Primary Container`, `Secondary Container`, `Surface`, `Surface Container Low/Lowest/High`, `On Surface`, and seed palettes (Purple, Green, Terracotta).
+- **Flat Depth Architecture:** Zero projected `box-shadow` on regular cards. Elevation is driven purely by surface tonal luminance.
+- **High-Contrast Contract (WCAG AAA):** Certified minimum 7:1 contrast ratio for all badges, trend pills, and alert states (`.m3-badge-success`, `.m3-badge-error`, `.m3-badge-warning`).
+- **Responsive Layouts:** Desktop 3-Pane (`Drawer 240px` + `Feed 360px` + `Detail flex-1`) & Mobile Single-Pane drill-down with Bottom Navigation Bar (`80px`) and circular FAB.
+- **Full Reference:** Refer to **[Material You Design System](skills/vanilla-core-ui/references/material-you-design-system.md)** and **[Material Web Catalog](skills/vanilla-core-ui/references/material-catalog.md)**.
 
 ---
 
@@ -69,6 +87,9 @@ project-name/
 For initial file setups, components, and module code, refer to the following blueprint guides:
 
 - **[Project Boilerplate Kit](skills/vanilla-core-ui/references/boilerplate.md)** (`package.json`, `server.js`, `index.html`, `style.css`)
+- **[Material You Design System & Style Guide](skills/vanilla-core-ui/references/material-you-design-system.md)** (Tokens, flat elevation, geometry, breakpoints, components & execution scenarios)
+- **[Material Boilerplate Kit](skills/vanilla-core-ui/references/material-boilerplate.md)** (Material Design shell, fonts, icons & MDC CDN)
+- **[Material Components Catalog](skills/vanilla-core-ui/references/material-catalog.md)** (Exhaustive MDC Web component mapping & HTML examples)
 - **[Core Module Blueprints](skills/vanilla-core-ui/references/blueprints.md)** (`store.js`, `dom-elements.js`, `ui/renderer.js`, `load.js`, `main.js`)
 - **[Component Pattern Blueprint](skills/vanilla-core-ui/references/component.md)** (`header.html`, `header.js`)
 - **[Gemini Models Reference](skills/vanilla-core-ui/references/gemini-models.md)** (Model selection guidance)
