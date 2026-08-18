@@ -8,26 +8,206 @@ Esta especificación técnica exhaustiva define las reglas obligatorias de dise�
 
 El agente nunca debe usar colores estáticos o arbitrarios en código duro. **Todo color debe mapearse a Roles Semánticos Dinámicos**.
 
-### A. Muestras de Referencia de Paletas Tono-Base (Seed Color)
+### A. Reglas Maestras de Aplicación Semántica (Master Orchestration Rules)
 
-| Token Semántico | Uso en Interfaz | Hex Tema Verde (Ref.) | Hex Tema Terracota (Ref.) | Hex Tema Púrpura (Ref.) |
-| --- | --- | --- | --- | --- |
-| **`Primary`** | Botón primario activo, FABs, líneas de acento e iconos clave. | `#426B29` | `#A24244` | `#6750A4` |
-| **`On Primary`** | Texto e iconos sobre superficie `Primary`. | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` |
-| **`Primary Container`** | Tarjeta seleccionada, FAB extendido, píldora de filtro seleccionada. | `#D7E8CD` | `#FBBBBF` | `#C8B6FF` |
-| **`On Primary Container`** | Texto e iconos dentro de elementos `Primary Container`. | `#1C1D1B` | `#421316` | `#28164D` |
-| **`Secondary Container`** | Píldora indicadora en barras de navegación (Bottom Nav / Drawer). | `#E2E5DC` | `#FDE0DF` | `#E2DFFF` |
-| **`On Secondary Container`** | Texto e icono del ítem activo en la barra de navegación. | `#1C1D1B` | `#241A1A` | `#1D192B` |
-| **`Surface`** | Lienzo exterior o fondo base del marco de la aplicación. | `#F3F2F8` | `#F3F2F8` | `#E5E2F3` |
-| **`Surface Container Low`** | Fondo de barras laterales fijas (*Standard Drawer* / Subpaneles). | `#F8F5FD` | `#F8F5FD` | `#F8F5FD` |
-| **`Surface Container`** | Tarjetas inactivas, barra de búsqueda, campos neutros. | `#EDE8F5` | `#FFF0EF` | `#EDE8F5` |
-| **`Surface Container High`** | Modales flotantes, menús *Drawer* superpuestos, tarjetas elevadas. | `#FAF8FE` | `#FAF8FE` | `#FAF8FE` |
-| **`Surface Container Lowest`**| Tarjetas blancas puras (#FFFFFF) en Light mode. | `#FFFFFF` | `#FFFFFF` | `#FFFFFF` |
-| **`On Surface`** | Titulares principales, nombres de contacto, texto primario. | `#1C1D1B` | `#241A1A` | `#1D192B` |
-| **`On Surface Variant`** | Fechas, texto secundario, iconos inactivos, leyendas. | `#595C56` | `#635756` | `#49454F` |
-| **`Outline`** | Bordes finos de inputs, chips inactivos, botones *Outlined*. | `#73796E` | `#73796E` | `#79747E` |
-| **`Outline Variant`** | Líneas divisorias (*Dividers*) entre secciones de listas y tablas. | `#E7E0EC` | `#E7E0EC` | `#E7E0EC` |
-| **`Scrim`** | Capa de oscurecimiento tras diálogos o menús modales. | `rgba(0,0,0,0.3)` | `rgba(0,0,0,0.3)` | `rgba(0,0,0,0.3)` |
+Para aplicar cualquier esquema con éxito en cualquier layout (móvil, tablet o escritorio), el agente DEBE seguir estas **tres reglas de orquestación obligatorias**:
+
+1. **Regla de Superficies y Elevación:**
+   - `Surface`: Lienzo base (el fondo más grande de la aplicación / App Shell).
+   - `Surface Container Low`: Paneles laterales de navegación fijos (*Navigation Drawer / Navigation Rail integrado*).
+   - `Surface Container`: Barras de búsqueda fijas (`Search Bar`), tarjetas de contenido inactivo, inputs neutros.
+   - `Surface Container High`: Diálogos modales flotantes, tarjetas elevadas, menús desplegables.
+
+2. **Regla de Contraste "On-":**
+   - Cualquier texto o icono que se pose sobre una superficie `Container` debe usar obligatoriamente su tono `On...Container` correspondiente (*Ejemplo:* Si una tarjeta usa `Primary Container`, el texto debe ser `On Primary Container`).
+
+3. **Regla de Estados de Selección:**
+   - `Estado Inactivo/Neutro`: Usa `Surface Container` (el tono de la tarjeta base).
+   - `Estado Seleccionado/En Foco`: El fondo de la tarjeta/ítem debe cambiar a `Primary Container`. Todo el texto/icono interno debe cambiar a `On Primary Container`.
+
+---
+
+### B. Catálogo de los 10 Esquemas de Color Semánticos (5 Familias Tonales)
+
+#### 🌿 Familia 1: Verdes y Oliva (Naturaleza / Salud / Sostenibilidad)
+
+##### Esquema 1: "Forest Sage" (Verde Salvia Vibrante)
+- *Semilla:* Verde bosque vivo de contraste medio-alto. Sensación de frescura y vitalidad.
+- *Uso:* Apps de salud, meditación, sostenibilidad activa, gestión ecológica.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#426B29` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#D7E8CD` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#0C2002` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#F3F6E8` | Fondo base de la app. |
+| **`Surface Container`** | `#EAEFE0` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FAFDF1` | Modales flotantes, menús. |
+| **`On Surface`** | `#1A1E17` | Texto primario. |
+| **`Outline`** | `#73796E` | Bordes finos de inputs. |
+
+##### Esquema 2: "Olive Slate" (Verde Oliva Desaturado / Tierra)
+- *Semilla:* Verde oliva militar seco con bases cálidas (crema). Reposado y formal.
+- *Uso:* Apps de agricultura, finanzas éticas, lectura reposada, documentación.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#5A641F` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#DDE895` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#1A1E00` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#FBF8F1` | Fondo base de la app. |
+| **`Surface Container`** | `#F5EEE2` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FFFDF9` | Modales flotantes, menús. |
+| **`On Surface`** | `#1E1B16` | Texto primario. |
+| **`Outline`** | `#79796C` | Bordes finos de inputs. |
+
+---
+
+#### 🔴 Familia 2: Rojos y Terracota (Dinámicos / Cálidos / Energía)
+
+##### Esquema 3: "Crimson Quartz" (Rojo Carmesí Intenso)
+- *Semilla:* Rojo carmesí muy saturado y limpio. Alta visibilidad y energía.
+- *Uso:* Alertas, apps de fitness, comercio de alta visibilidad, noticias de última hora.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#BB1834` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#FFDADF` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#410009` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#FFF8F7` | Fondo base de la app. |
+| **`Surface Container`** | `#FFF0EF` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FFF9F8` | Modales flotantes, menús. |
+| **`On Surface`** | `#241A1A` | Texto primario. |
+| **`Outline`** | `#857373` | Bordes finos de inputs. |
+
+##### Esquema 4: "Terracotta Dusk" (Rojo Arcilla Orgánico)
+- *Semilla:* Rojo arcilla u óxido desaturado con base salmón. Cálido, terroso y acogedor.
+- *Uso:* Redes sociales dinámicas, eventos creativos, diseño de interiores, retail de autor.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#A24244` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#FBBBBF` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#421316` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#FDF8F7` | Fondo base de la app. |
+| **`Surface Container`** | `#FFF0EF` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FFF8F7` | Modales flotantes, menús. |
+| **`On Surface`** | `#241A1A` | Texto primario. |
+| **`Outline`** | `#837373` | Bordes finos de inputs. |
+
+---
+
+#### 💜 Familia 3: Púrpuras y Violetas (Premium / Corporativos / Creativos)
+
+##### Esquema 5: "Lavender Breeze" (Púrpura Semántico Clásico M3)
+- *Semilla:* El púrpura icónico de M3. Contraste equilibrado y bases gris-lavanda frías.
+- *Uso:* Clientes de correo, dashboards de trabajo corporativo, suites de productividad.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#6750A4` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#C8B6FF` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#28164D` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#E5E2F3` | Fondo base de la app. |
+| **`Surface Container`** | `#F1EEF8` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FAF8FE` | Modales flotantes, menús. |
+| **`On Surface`** | `#1D192B` | Texto primario. |
+| **`Outline`** | `#79747E` | Bordes finos de inputs. |
+
+##### Esquema 6: "Orchid Velvet" (Púrpura Orquídea Floral)
+- *Semilla:* Púrpura con matices rosados más pronunciados. Cálido, sofisticado y amigable.
+- *Uso:* Apps creativas, diseño, portafolios, experiencias de bienestar y belleza.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#8E4A8D` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#FFD7F7` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#360538` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#FEF6FA` | Fondo base de la app. |
+| **`Surface Container`** | `#FFF1F8` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FFF9FC` | Modales flotantes, menús. |
+| **`On Surface`** | `#201A1E` | Texto primario. |
+| **`Outline`** | `#82737D` | Bordes finos de inputs. |
+
+---
+
+#### 🌊 Familia 4: Azules y Turquesas (Corporativos / Analítica / Fríos)
+
+##### Esquema 7: "Oceanic Slate" (Azul Pizarra Frío)
+- *Semilla:* Azul océano profundo y desaturado. Sensación de estabilidad, confianza y seriedad.
+- *Uso:* Apps corporativas, finanzas, analítica de datos, gestión de proyectos.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#2B638B` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#CDE5F7` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#001E30` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#F4F7FA` | Fondo base de la app. |
+| **`Surface Container`** | `#E9EEF4` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#F8FAFC` | Modales flotantes, menús. |
+| **`On Surface`** | `#181C20` | Texto primario. |
+| **`Outline`** | `#71787E` | Bordes finos de inputs. |
+
+##### Esquema 8: "Aqua Frost" (Turquesa Gélido / Aqua)
+- *Semilla:* Turquesa oscuro que genera fondos azul gélido muy pálidos. La paleta más fría y clínica.
+- *Uso:* Apps de salud, telemedicina, clima, monitorización de sistemas fríos.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | --- | --- |
+| **`Primary`** | `#006874` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#97F0FF` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#001F24` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#F3F6F8` | Fondo base de la app. |
+| **`Surface Container`** | `#EAEFE2` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#F9FCFC` | Modales flotantes, menús. |
+| **`On Surface`** | `#191C1D` | Texto primario. |
+| **`Outline`** | `#70797B` | Bordes finos de inputs. |
+
+---
+
+#### 🍯 Familia 5: Orgánicos y Ámbar (Tierras / Naranjas / Artesanales)
+
+##### Esquema 9: "Golden Amber" (Dorado Miel Luminoso)
+- *Semilla:* Dorado ámbar oscuro y rico con bases crema luminosas. Sensación de valor y calidez.
+- *Uso:* Apps de notas, consumo de contenidos, recetas de cocina, interfaces creativas.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#7A5900` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#FFDF9E` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#261A00` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#FBF8F1` | Fondo base de la app. |
+| **`Surface Container`** | `#F5EEE2` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FFFDF9` | Modales flotantes, menús. |
+| **`On Surface`** | `#1E1B16` | Texto primario. |
+| **`Outline`** | `#807567` | Bordes finos de inputs. |
+
+##### Esquema 10: "Desert Bloom" (Naranja Tierra Orgánico)
+- *Semilla:* Naranja tierra de siena desaturado con bases melocotón. Rústico, denso y acogedor.
+- *Uso:* Apps de gastronomía/restaurantes, artesanía, bienestar holístico, blogs de viajes.
+
+| Token Semántico | Valor Hex | Uso en UI |
+| :--- | :--- | :--- |
+| **`Primary`** | `#85511A` | Botones, FABs, iconos seleccionados. |
+| **`On Primary`** | `#FFFFFF` | Texto/Iconos sobre botones primarios. |
+| **`Primary Container`** | `#FFDCC3` | Fondos de ítems seleccionados. |
+| **`On Primary Container`** | `#2C1500` | Texto sobre ítems seleccionados. |
+| **`Surface`** | `#FFF9F6` | Fondo base de la app. |
+| **`Surface Container`** | `#FFF1EA` | Barras de búsqueda, tarjetas base. |
+| **`Surface Container High`** | `#FFF9F7` | Modales flotantes, menús. |
+| **`On Surface`** | `#201A16` | Texto primario. |
+| **`Outline`** | `#837367` | Bordes finos de inputs. |
+
+---
 
 ### B. Regla Estricta de Elevación (Flat Depth Architecture)
 

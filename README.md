@@ -50,7 +50,13 @@ TailwindCSS + Semantic HTML5 + Vanilla JS Pub/Sub architecture.
 ### 2. Material You / Material Design 3 Mode (`/vanilla-core-ui material`)
 Integrates the complete [Material Web Components (M3)](https://github.com/material-components/material-web) and the **Material You Design System Architecture** directly into Vanilla-Core.
 * **100% Offline Vendored**: Includes offline bundled JavaScript and Material Symbols Outlined font files inside `skills/vanilla-core-ui/vendor/material-web/` for complete offline independence.
-* **Dynamic Color Tokens (Core Palette)**: Semantic role mapping for `Primary`, `Primary Container`, `Secondary Container`, `Surface`, `Surface Container Low/Lowest/High`, `On Surface`, and seed palettes (Purple, Green, Terracotta).
+* **10 Semantic Color Schemes (5 Tonal Families)**:
+  1. 🌿 *Verdes y Oliva:* Forest Sage (`#426B29`), Olive Slate (`#5A641F`)
+  2. 🔴 *Rojos y Terracota:* Crimson Quartz (`#BB1834`), Terracotta Dusk (`#A24244`)
+  3. 💜 *Púrpuras y Violetas:* Lavender Breeze (`#6750A4`), Orchid Velvet (`#8E4A8D`)
+  4. 🌊 *Azules y Turquesas:* Oceanic Slate (`#2B638B`), Aqua Frost (`#006874`)
+  5. 🍯 *Orgánicos y Ámbar:* Golden Amber (`#7A5900`), Desert Bloom (`#85511A`)
+* **3 Master Orchestration Rules**: Strict surface elevation hierarchy, mandatory "On-" token pairing, and selection states (`Primary Container` + `On Primary Container`).
 * **Flat Depth Architecture**: Zero projected `box-shadow` on regular cards. Elevation is driven purely by surface tonal luminance.
 * **WCAG AAA High-Contrast Contract**: Certified minimum 7:1 contrast ratio on all badges, pills, and interactive states (`.m3-badge-success`, `.m3-badge-error`, `.m3-badge-warning`).
 * **Adaptive Breakpoints & Layouts**:

@@ -40,7 +40,13 @@ Uses standard HTML5 semantic elements styled with TailwindCSS utilities and pure
 ### 2. Material You / Material Design 3 Mode (`/vanilla-core-ui material`)
 Uses the official **Material Web Components (M3)** with the **Material You Design System**:
 - **Offline Vendored Bundle:** 100% offline self-contained JavaScript bundle & Material Symbols font in `skills/vanilla-core-ui/vendor/material-web/`.
-- **Dynamic Semantic Tokens:** `Primary`, `Primary Container`, `Secondary Container`, `Surface`, `Surface Container Low/Lowest/High`, `On Surface`, and seed palettes (Purple, Green, Terracotta).
+- **Dynamic Semantic Tokens & 10 Color Schemes (5 Tonal Families):**
+  1. *Verdes y Oliva:* Forest Sage (`#426B29`), Olive Slate (`#5A641F`)
+  2. *Rojos y Terracota:* Crimson Quartz (`#BB1834`), Terracotta Dusk (`#A24244`)
+  3. *Púrpuras y Violetas:* Lavender Breeze (`#6750A4`), Orchid Velvet (`#8E4A8D`)
+  4. *Azules y Turquesas:* Oceanic Slate (`#2B638B`), Aqua Frost (`#006874`)
+  5. *Orgánicos y Ámbar:* Golden Amber (`#7A5900`), Desert Bloom (`#85511A`)
+- **3 Master Orchestration Rules:** Strict surface hierarchy (`Surface`, `Container Low`, `Container`, `Container High`), "On-" token pairing, and selection states switching to `Primary Container` + `On Primary Container`.
 - **Flat Depth Architecture:** Zero projected `box-shadow` on regular cards. Elevation is driven purely by surface tonal luminance.
 - **High-Contrast Contract (WCAG AAA):** Certified minimum 7:1 contrast ratio for all badges, trend pills, and alert states (`.m3-badge-success`, `.m3-badge-error`, `.m3-badge-warning`).
 - **Responsive Layouts:** Desktop 3-Pane (`Drawer 240px` + `Feed 360px` + `Detail flex-1`) & Mobile Single-Pane drill-down with Bottom Navigation Bar (`80px`) and circular FAB.
