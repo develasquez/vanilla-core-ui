@@ -54,9 +54,9 @@ Whenever an application requires **Material Design 3 (M3 / Material You)** or **
 > Do NOT create ad-hoc colors or custom components. Activate and use the independent [`material-design`](file:///Users/felipe/.agents/skills/material-design/SKILL.md) skill for all design decisions.
 
 1. **Visual Selection & `DESIGN.md` Generation:**
-   - Execute the interactive visual preview selector as instructed by `material-design`:
+   - Execute the interactive visual preview selector provided by `material-design`:
      ```bash
-     npx vanilla-core-ui --preview
+     npx material-design-skill --preview
      ```
    - The user selects their desired palette in the browser and generates `DESIGN.md` conforming to the Google Stitch Design-MD Specification.
    - Read `DESIGN.md` to retrieve the chosen palette, surface mode, and tokens.

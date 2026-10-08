@@ -75,26 +75,18 @@ npx vanilla-core-ui --global
 
 This installs the skill into `~/.gemini/config/skills/vanilla-core-ui/`.
 
-### 3. Interactive Visual Palette Selector & `DESIGN.md` Generation
-Open the live interactive browser gallery to preview palettes, inspect contrast, and generate `DESIGN.md`:
+### 3. Material Design 3 Companion (`material-design-skill`)
+When your application requires Material Design 3 tokens, component palettes, or visual preview:
 
 ```bash
-npx vanilla-core-ui --preview
+# Launch interactive visual palette selector & generate DESIGN.md
+npx material-design-skill --preview
+
+# Preview 24-bit terminal color schemes
+npx material-design-skill --palettes
 ```
 
-### 4. Terminal Truecolor Palette Preview (24-bit ANSI)
-Preview the 10 Material Design 3 semantic color schemes directly in your terminal:
-
-```bash
-# Summary table of all 10 schemes
-npx vanilla-core-ui --palettes
-
-# Detailed view of a specific scheme
-npx vanilla-core-ui --palettes forest-sage
-npx vanilla-core-ui --palettes oceanic-slate
-```
-
-### 5. CLI Help
+### 4. CLI Help
 ```bash
 npx vanilla-core-ui --help
 ```
