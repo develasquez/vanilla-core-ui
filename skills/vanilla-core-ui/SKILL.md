@@ -56,7 +56,7 @@ Whenever an application requires **Material Design 3 (M3 / Material You)** or **
 1. **Visual Selection & `DESIGN.md` Generation:**
    - Execute the interactive visual preview selector provided by `material-design`:
      ```bash
-     npx material-design-skill --preview
+     npx @develasquez/material-design --preview
      ```
    - The user selects their desired palette in the browser and generates `DESIGN.md` conforming to the Google Stitch Design-MD Specification.
    - Read `DESIGN.md` to retrieve the chosen palette, surface mode, and tokens.

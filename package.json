@@ -1,7 +1,7 @@
 {
   "name": "vanilla-core-ui",
-  "version": "1.4.1",
-  "description": "AI Agent Skill & CLI for Vanilla-Core Architecture - SSoT state management, Pub/Sub UI updates, surgical DOM updates, zero-dependency modular Vanilla JS web applications, with seamless delegation to material-design-skill.",
+  "version": "1.4.2",
+  "description": "AI Agent Skill & CLI for Vanilla-Core Architecture - SSoT state management, Pub/Sub UI updates, surgical DOM updates, zero-dependency modular Vanilla JS web applications, with seamless delegation to material-design.",
   "main": "skills/vanilla-core-ui/SKILL.md",
   "bin": {
     "vanilla-core-ui": "bin/cli.js",

@@ -44,9 +44,9 @@ Every application built or managed by `vanilla-core-ui` strictly adheres to 7 fo
 
 Vanilla-Core UI is strictly an **architectural pattern**: it governs reactive state management, component encapsulation, DOM caching, and surgical rendering lifecycles.
 
-When an application requires **Material Design 3 (M3 / Material You)** or **Material Web Components (`@material/web`)**, `vanilla-core-ui` seamlessly integrates with the companion standalone skill [**`material-design-skill`**](https://github.com/develasquez/material-design-skill):
+When an application requires **Material Design 3 (M3 / Material You)** or **Material Web Components (`@material/web`)**, `vanilla-core-ui` seamlessly integrates with the companion standalone skill [**`material-design`**](https://github.com/develasquez/material-design):
 
-* **AI Slash Command**: `/vanilla-core-ui material` activates both the Vanilla-Core architectural pattern and the [`material-design`](../material-design-skill) design system.
+* **AI Slash Command**: `/vanilla-core-ui material` activates both the Vanilla-Core architectural pattern and the [`material-design`](https://github.com/develasquez/material-design) design system.
 * **100% Decoupled Design Tokens**: HCT semantic color schemes, 3 surface modes, and WCAG AAA compliance are governed independently by `material-design`.
 * **Zero-CDN Offline Assets**: Offline fonts (Material Symbols Outlined) and Web Component bundles (`@material/web`) are provided by `material-design/vendor/` and copied to `public/vendor/`.
 * **Surgical State Binding**: Vanilla-Core binds event listeners on M3 web components (`<md-filled-button>`, `<md-outlined-text-field>`, `<md-switch>`) and surgically updates properties without destroying host containers or losing cursor focus.
@@ -75,18 +75,7 @@ npx vanilla-core-ui --global
 
 This installs the skill into `~/.gemini/config/skills/vanilla-core-ui/`.
 
-### 3. Material Design 3 Companion (`material-design-skill`)
-When your application requires Material Design 3 tokens, component palettes, or visual preview:
-
-```bash
-# Launch interactive visual palette selector & generate DESIGN.md
-npx material-design-skill --preview
-
-# Preview 24-bit terminal color schemes
-npx material-design-skill --palettes
-```
-
-### 4. CLI Help
+### 3. CLI Help
 ```bash
 npx vanilla-core-ui --help
 ```
@@ -266,4 +255,4 @@ npm test
 * **License**: [MIT](LICENSE)
 * **Repository**: [https://github.com/develasquez/vanilla-core-ui](https://github.com/develasquez/vanilla-core-ui)
 * **npm Package**: [https://www.npmjs.com/package/vanilla-core-ui](https://www.npmjs.com/package/vanilla-core-ui)
-* **Companion Skill**: [`material-design-skill`](https://github.com/develasquez/material-design-skill)
+* **Companion Skill**: [`material-design`](https://github.com/develasquez/material-design)
