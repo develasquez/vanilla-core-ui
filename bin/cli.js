@@ -41,7 +41,10 @@ Usage:
 
 AI Agent Slash Commands supported:
   /vanilla-core-ui          Standard Vanilla-Core Architecture (Tailwind + SSoT + PubSub)
-  /vanilla-core-ui material Vanilla-Core Architecture with Material Web (M3 Semantic Color Schemes)
+  /vanilla-core-ui material Vanilla-Core Architecture with Material Web (delegates to material-design)
+
+Companion Skill:
+  material-design-skill     Standalone design system skill (npx material-design-skill)
 `);
   process.exit(0);
 }
